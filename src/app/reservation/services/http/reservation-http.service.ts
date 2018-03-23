@@ -1,14 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Registration } from './element/registration';
+import { Reservation } from '../../elements/reservation';
 import { catchError, map, tap } from 'rxjs/operators';
-import { AlertsService } from '../alerts/alerts.service';
-import { environment } from '../../environments/environment';
-@Injectable()
-export class RegistrationHttpService {
+import { AlertsService } from '../../../alerts/alerts.service';
+import { environment } from '../../../../environments/environment';
+import { Headers } from '@angular/http'
 
-  private registration_url = environment.apiUrl + "registration";
+@Injectable()
+export class ReservationHttpService {
+
+
+
+  private reservation_url = environment.reservationUrl;
+
 
   constructor(
     private http: HttpClient,
@@ -17,16 +22,16 @@ export class RegistrationHttpService {
     this.alertService = alertService;
   }
 
-  getRegistrationNext(): Promise<Registration> {
-    return new Promise<Registration>((resolve, reject) => {
-      this.http.get<any>(this.registration_url + "/next")
+  getReservationNext(): Promise<Reservation> {
+    return new Promise<Reservation>((resolve, reject) => {
+      this.http.get<any>(this.reservation_url + "/next")
         .subscribe((response) => {
           if (response.error) {
             this.alertService.showErrorAlert(response.error);
             reject(response.error);
           } else {
-            if (response.registration) {
-              return resolve(response.registration);
+            if (response.reservation) {
+              return resolve(response.reservation);
             }
             this.alertService.showErrorAlert("Le serveur ne connait pas la prochaine réservation");
             return reject("Le serveur ne connait pas la prochaine réservation");
@@ -38,15 +43,15 @@ export class RegistrationHttpService {
     });
   }
 
-  updateRegistration(registration: Registration): Promise<Registration> {
-    return new Promise<Registration>((resolve, reject) => {
-      this.http.put<any>(this.registration_url + "/update", {
-        registration:
+  updateReservation(reservation: Reservation): Promise<Reservation> {
+    return new Promise<Reservation>((resolve, reject) => {
+      this.http.put<any>(this.reservation_url + "/update", {
+        reservation:
           {
-            _id: registration.id,
-            participants: registration.liste_participants,
-            not_participants: registration.liste_absents,
-            uncertains: registration.liste_incertains
+            _id: reservation.id,
+            participants: reservation.liste_participants,
+            not_participants: reservation.liste_absents,
+            uncertains: reservation.liste_incertains
           }
       }).subscribe((response) => {
         if (response.error) {
@@ -54,7 +59,7 @@ export class RegistrationHttpService {
           reject(response.error);
         } else {
           this.alertService.showSuccessAlert("Mise à jour réussie");
-          resolve(response.registration);
+          resolve(response.reservation);
         }
       }, ((error) => {
         this.alertService.showErrorAlert(error.message);

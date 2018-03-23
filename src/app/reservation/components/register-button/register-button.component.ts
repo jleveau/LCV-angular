@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { RegistrationService } from '../registration.service';
+import { ReservationService } from '../../services/reservation/reservation.service';
 
 @Component({
   selector: 'app-register-button',
@@ -10,9 +10,9 @@ export class RegisterButtonComponent implements OnInit {
 
   selectedUserName: string;
 
-  constructor(private registrationService: RegistrationService) {
-    this.registrationService = registrationService
-    this.registrationService.getUserSelectedObservable().subscribe((user) => {
+  constructor(private reservationService: ReservationService) {
+    this.reservationService = reservationService
+    this.reservationService.getUserSelectedObservable().subscribe((user) => {
       this.selectedUserName = user;
     })
    }
@@ -22,19 +22,19 @@ export class RegisterButtonComponent implements OnInit {
 
   addParticipatingUser(name: String): void {
     if (name) {
-      this.registrationService.addParticipatinUser(String(name));
+      this.reservationService.addParticipatinUser(String(name));
     }
   }
 
   addUncertainUser(name: String): void {
     if (name) {
-      this.registrationService.addUncertainUser(String(name));
+      this.reservationService.addUncertainUser(String(name));
     }
   }
 
   addUnavailableUser(name: String): void {
     if (name) {
-      this.registrationService.addUnavailableUser(String(name));
+      this.reservationService.addUnavailableUser(String(name));
     }
   }
 

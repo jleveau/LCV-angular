@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: '/api/'
+  reservationUrl: 'http://localhost:3001/api/reservation'
 };

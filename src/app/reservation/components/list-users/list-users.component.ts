@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { RegistrationService } from '../registration.service';
+import { ReservationService } from '../../services/reservation/reservation.service';
 
 @Component({
   selector: 'app-list-users',
@@ -13,15 +13,15 @@ export class ListUsersComponent implements OnInit {
   @Output() onDelete: EventEmitter<String> = new EventEmitter<String>();
 
 
-  constructor(private registrationService: RegistrationService) {
-    this.registrationService = registrationService
+  constructor(private reservationService: ReservationService) {
+    this.reservationService = reservationService
   }
 
   ngOnInit() {
   }
 
   selectUser(user: String) {
-    this.registrationService.updateSelectedUser(user);
+    this.reservationService.updateSelectedUser(user);
   }
 
   delete(user: String) {
