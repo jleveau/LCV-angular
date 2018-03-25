@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "serve" : "node server",
     "start": "ng serve --open",
     "build": "ng build --prod --env=prod",
     "test": "ng test",
@@ -25,7 +24,6 @@
     "@ng-bootstrap/ng-bootstrap": "^1.0.0",
     "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
-    "express": "^4.16.3",
     "jquery": "^3.3.1",
     "path": "^0.12.7",
     "rxjs": "^5.5.6",

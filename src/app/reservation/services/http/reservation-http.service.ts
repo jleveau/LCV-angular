@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 import { Reservation } from '../../elements/reservation';
-import { catchError, map, tap } from 'rxjs/operators';
 import { AlertsService } from '../../../alerts/alerts.service';
 import { environment } from '../../../../environments/environment';
-import { Headers } from '@angular/http'
 
 @Injectable()
 export class ReservationHttpService {
