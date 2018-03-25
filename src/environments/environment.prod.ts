@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  reservationUrl: 'reservation/api'
+  reservationUrl: '/api/reservation'
 };

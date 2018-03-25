@@ -7,10 +7,7 @@ import { environment } from '../../../../environments/environment';
 @Injectable()
 export class ReservationHttpService {
 
-
-
   private reservation_url = environment.reservationUrl;
-
 
   constructor(
     private http: HttpClient,
