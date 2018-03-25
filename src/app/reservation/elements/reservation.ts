@@ -1,5 +1,3 @@
-import * as moment from 'moment-timezone';
-
 export class Reservation {
     id: string;
     date: Date;
@@ -21,9 +19,9 @@ export class Reservation {
         this.liste_participants = list_participants;
         this.liste_incertains = liste_incertains;
 
-        this.end_date = moment(end_date.toString()).tz("Europe/Paris").toDate();
-        this.date = moment(date.toString()).tz("Europe/Paris").toDate();
-        this.reservation_limit_date = moment(reservation_limit_date.toString()).tz("Europe/Paris").toDate();
+        this.end_date = new Date(end_date.toString())
+        this.date = new Date(date.toString())
+        this.reservation_limit_date = new Date(reservation_limit_date);
     }
 
     addUser(user: string) {
