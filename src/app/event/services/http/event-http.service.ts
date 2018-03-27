@@ -1,19 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient } from '@angular/common/http';
 import { Event } from '../../elements/event';
-import { catchError, map, tap } from 'rxjs/operators';
 import { AlertsService } from '../../../alerts/alerts.service';
 import { environment } from '../../../../environments/environment';
-import { Headers } from '@angular/http'
 
 @Injectable()
 export class EventHttpService {
 
-
-
   private event_url = environment.eventUrl;
-
 
   constructor(
     private http: HttpClient,
