@@ -1,5 +1,6 @@
 <div class="flex_content">
   <nav class="roadmap_link">
+   <a routerLink="/roadmap">Notre Roadmap !</a>
   </nav>
   <div *ngIf="serviceAvailable(); else loading">
     <h2>{{getEventDate() | date:"fullDate"}} de {{getEventDate() | date: "shortTime"}}h à {{getEventEndDate() | date: "shortTime"}}h</h2>
