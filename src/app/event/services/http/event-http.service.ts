@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Reservation } from '../../elements/reservation';
+import { Event } from '../../elements/event';
 import { catchError, map, tap } from 'rxjs/operators';
 import { AlertsService } from '../../../alerts/alerts.service';
 import { environment } from '../../../../environments/environment';
 import { Headers } from '@angular/http'
 
 @Injectable()
-export class ReservationHttpService {
+export class EventHttpService {
 
 
 
-  private reservation_url = environment.reservationUrl;
+  private event_url = environment.eventUrl;
 
 
   constructor(
@@ -22,16 +22,16 @@ export class ReservationHttpService {
     this.alertService = alertService;
   }
 
-  getReservationNext(): Promise<Reservation> {
-    return new Promise<Reservation>((resolve, reject) => {
-      this.http.get<any>(this.reservation_url + "/next")
+  getEventNext(): Promise<Event> {
+    return new Promise<Event>((resolve, reject) => {
+      this.http.get<any>(this.event_url + "/next")
         .subscribe((response) => {
           if (response.error) {
             this.alertService.showErrorAlert(response.error);
             reject(response.error);
           } else {
-            if (response.reservation) {
-              return resolve(response.reservation);
+            if (response.event) {
+              return resolve(response.event);
             }
             this.alertService.showErrorAlert("Le serveur ne connait pas la prochaine réservation");
             return reject("Le serveur ne connait pas la prochaine réservation");
@@ -43,15 +43,15 @@ export class ReservationHttpService {
     });
   }
 
-  updateReservation(reservation: Reservation): Promise<Reservation> {
-    return new Promise<Reservation>((resolve, reject) => {
-      this.http.put<any>(this.reservation_url + "/update", {
-        reservation:
+  updateEvent(event: Event): Promise<Event> {
+    return new Promise<Event>((resolve, reject) => {
+      this.http.put<any>(this.event_url + "/update", {
+        event:
           {
-            _id: reservation.id,
-            participants: reservation.liste_participants,
-            not_participants: reservation.liste_absents,
-            uncertains: reservation.liste_incertains
+            _id: event.id,
+            participants: event.liste_participants,
+            not_participants: event.liste_absents,
+            uncertains: event.liste_incertains
           }
       }).subscribe((response) => {
         if (response.error) {
@@ -59,7 +59,7 @@ export class ReservationHttpService {
           reject(response.error);
         } else {
           this.alertService.showSuccessAlert("Mise à jour réussie");
-          resolve(response.reservation);
+          resolve(response.event);
         }
       }, ((error) => {
         this.alertService.showErrorAlert(error.message);

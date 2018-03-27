@@ -1,8 +1,8 @@
-export class Reservation {
+export class Event {
     id: string;
     date: Date;
     end_date: Date;
-    reservation_limit_date: Date;
+    event_limit_date: Date;
     liste_participants: string[];
     liste_absents: string[];
     liste_incertains: string[];
@@ -13,14 +13,14 @@ export class Reservation {
         liste_incertains:string[] = [],
         end_date:string = null,
         date:string = null,
-        reservation_limit_date: string = null) {
+        event_limit_date: string = null) {
         this.id = id;
         this.liste_absents = liste_absents;
         this.liste_participants = list_participants;
         this.liste_incertains = liste_incertains;
         this.end_date = new Date(end_date.toString());
         this.date = new Date(date.toString());
-        this.reservation_limit_date = new Date(reservation_limit_date.toString());
+        this.event_limit_date = new Date(event_limit_date.toString());
     }
 
     addUser(user: string) {

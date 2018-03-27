@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  reservationUrl: 'http://reservation/api/reservation'
+  eventUrl: 'http://events/api/events'
 };

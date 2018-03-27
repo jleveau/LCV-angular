@@ -4,14 +4,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { AlertsService } from './alerts/alerts.service';
-import { RegisterButtonComponent } from './reservation/components/register-button/register-button.component';
-import { ListUsersComponent } from './reservation/components/list-users/list-users.component';
+import { RegisterButtonComponent } from './event/components/register-button/register-button.component';
+import { ListUsersComponent } from './event/components/list-users/list-users.component';
 import { RoadmapComponent } from './roadmap/roadmap.component';
 import { AppRoutingModule } from './/app-routing.module';
-import { ReservationService } from './reservation/services/reservation/reservation.service'
+import { EventService } from './event/services/event/event.service'
 import { HttpClientModule } from '@angular/common/http';
-import { ReservationComponent } from './reservation/components/main/reservation.component';
-import { ReservationHttpService } from './reservation/services/http/reservation-http.service';
+import { EventComponent } from './event/components/event.component';
+import { EventHttpService } from './event/services/http/event-http.service';
 import { LOCALE_ID } from '@angular/core';
 import { AlertsComponent } from './alerts/alerts.component';
 import { registerLocaleData } from '@angular/common';
@@ -28,7 +28,7 @@ registerLocaleData(localeFr, 'fr');
     RegisterButtonComponent,
     ListUsersComponent,
     RoadmapComponent,
-    ReservationComponent,
+    EventComponent,
     AlertsComponent,
     TransactionButtonComponent,
     TransactionViewComponent
@@ -41,9 +41,9 @@ registerLocaleData(localeFr, 'fr');
     HttpClientModule
   ],
   providers: [
-    ReservationService,
+    EventService,
     AlertsService,
-    ReservationHttpService,
+    EventHttpService,
     { provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent]
 })
