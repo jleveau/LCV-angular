@@ -3,12 +3,9 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "ng": "ng",
     "start": "ng serve --open",
     "build": "ng build --prod --env=prod",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
     "docker" : "docker  build -t oursgroumy/lcv-angular . && docker push oursgroumy/lcv-angular"
   },
   "private": true,

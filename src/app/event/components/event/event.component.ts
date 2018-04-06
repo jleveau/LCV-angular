@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EventService } from '../services/event/event.service';
-import { Event } from '../elements/event';
+import { EventService } from '../../services/event/event.service';
+import { Event } from '../../elements/event';
 import { Subject }    from 'rxjs/Subject';
 
 @Component({
