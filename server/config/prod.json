@@ -1,0 +1,10 @@
+{
+    "sslOptions": {
+        "key": "/etc/letsencrypt/archive/badminton.le-cerf-vert.ovh/privkey3.pem",
+        "cert": "/etc/letsencrypt/archive/badminton.le-cerf-vert.ovh/fullchain3.pem",
+        "ca": "/etc/letsencrypt/archive/badminton.le-cerf-vert.ovh/chain3.pem"
+        },
+    "services":{
+        "events": "events:3001"
+    }
+}

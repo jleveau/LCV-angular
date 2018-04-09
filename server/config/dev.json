@@ -1,0 +1,10 @@
+{
+    "sslOptions": {
+        "key": "sslcerts/key.pem",
+        "cert": "sslcerts/cert.pem",
+        "passphrase": "passphrase"
+        },
+    "services":{
+        "events": "localhost:3001"
+    }
+}
