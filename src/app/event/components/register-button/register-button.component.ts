@@ -8,34 +8,17 @@ import { EventService } from '../../services/event/event.service';
 })
 export class RegisterButtonComponent implements OnInit {
 
-  selectedUserName: string;
+  @Input() user_list: String[];
 
   constructor(private eventService: EventService) {
     this.eventService = eventService
-    this.eventService.getUserSelectedObservable().subscribe((user) => {
-      this.selectedUserName = user;
-    })
    }
 
   ngOnInit() {
   }
 
-  addParticipatingUser(name: String): void {
-    if (name) {
-      this.eventService.addParticipatinUser(String(name));
-    }
-  }
-
-  addUncertainUser(name: String): void {
-    if (name) {
-      this.eventService.addUncertainUser(String(name));
-    }
-  }
-
-  addUnavailableUser(name: String): void {
-    if (name) {
-      this.eventService.addUnavailableUser(String(name));
-    }
+  addUser(name: String): void {
+    this.user_list.push(name)
   }
 
 }

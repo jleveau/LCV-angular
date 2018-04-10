@@ -18,12 +18,6 @@ export class EventComponent implements OnInit {
     this.getEvent();
   }
 
-  userSelectedSubject:Subject<any> = new Subject();
-
-  selectUser(user: String) {
-    this.userSelectedSubject.next(user);
-  }
-
   getEvent() {
     this.eventService.getEventNext()
     .then((event) => {

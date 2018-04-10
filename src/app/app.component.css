@@ -1,3 +1,36 @@
-.title {
-    text-align:center;
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,800');
+* {box-sizing: border-box;}
+
+.alerts { grid-area: alerts; }
+
+.menu { grid-area: menu; }
+.main { 
+    grid-area: main; 
+    text-align: left;
+    padding: 1em;
+    font-size: 50px;
+    font-weight: 800;
+    font-family: 'Montserrat', sans-serif;
+    overflow-y: scroll;
 }
+
+.right { grid-area: right; }
+.footer { grid-area: footer; }
+
+.wrapper > div {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+.wrapper {
+    display: grid;
+    height: 100vh;
+    grid-template-areas:
+      'alerts alerts alerts alerts alerts alerts'
+      'menu main main main main right'
+      'menu main main main main right'
+      'footer footer footer footer footer footer';
+    grid-gap: 5px;
+    background-color: #2196F3;
+
+}
+
