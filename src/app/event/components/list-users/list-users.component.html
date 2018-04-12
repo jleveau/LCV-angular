@@ -1,27 +1,33 @@
 <div>
-  <div class="userlist_panel panel panel-default">
+  <div >
     <table class="table ">
       <thead>
-        <th>Participe     
-          <app-register-button [user_list]="user_list"></app-register-button>
+        <th class= "action_button_column">
+            <i (click)="addUserToList('toto', participating_list)" class="table_header_button fa fa-user-plus"></i>
         </th>
-        <th>Peut être
-            <app-register-button [user_list]="user_list"></app-register-button>
+        <th>
+            <span class="table_headder">Participe</span>
         </th>
-        <th>Ne participe pas
-            <app-register-button [user_list]="user_list"></app-register-button>
+        <th class= "action_button_column">
+            <i  (click)="addUserToList('toto', maybe_list)" class="table_header_button fa fa-user-plus"></i>
         </th>
+        <th>
+          <span class="table_headder">Peut être</span>
+        </th>
+        <th class= "action_button_column">
+            <i  (click)="addUserToList('toto', not_participating_list)" class="table_header_button fa fa-user-plus"></i>
+        </th>
+        <th> 
+          <span class="table_headder">Ne participe pas</span></th>
       </thead>
       <tbody>
-        <tr>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
-        </tr>
-        <tr>
-            <td>a</td>
-            <td>b</td>
-            <td>c</td>
+        <tr *ngFor="let line of getTableContent()">
+          <td></td>
+          <td>{{line["participating"]}}</td>
+          <td></td>
+          <td>{{line["maybe"]}}</td>
+          <td></td>
+          <td>{{line["not_participating"]}}</td>
         </tr>
       </tbody>
     </table>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Event } from '../../elements/event';
-import { AlertsService } from '../../../alerts/alerts.service';
+import { AlertsService } from '../../../tools/alerts/alerts.service';
 import { environment } from '../../../../environments/environment';
 
 @Injectable()

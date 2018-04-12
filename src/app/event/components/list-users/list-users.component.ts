@@ -8,7 +8,10 @@ import { EventService } from '../../services/event/event.service';
 })
 export class ListUsersComponent implements OnInit {
 
-  @Input() user_list: String[];
+  @Input() participating_list: String[];
+  @Input() not_participating_list: String[];
+  @Input() maybe_list: String[];
+
   @Input() title: String;
   @Output() onDelete: EventEmitter<String> = new EventEmitter<String>();
 
@@ -20,16 +23,38 @@ export class ListUsersComponent implements OnInit {
   ngOnInit() {
   }
 
-  selectUser(user: String) {
-    this.eventService.updateSelectedUser(user);
+  getTableContent() {
+    const table = [];
+    let it = 0;
+    while (it < this.participating_list.length ||
+           it < this.not_participating_list.length ||
+           it < this.maybe_list.length) {
+             const line = {
+               participating: null,
+               not_participating: null,
+               maybe: null
+            }
+            if (it < this.participating_list.length) {
+              line.participating = this.participating_list[it]
+            }
+            if (it < this.not_participating_list.length) {
+              line.not_participating = this.not_participating_list[it]
+            }
+            if (it < this.maybe_list.length) {
+              line.maybe = this.maybe_list[it]
+            }
+            table.push(line);
+            it++
+           }
+    return table
   }
 
-  delete(user: String) {
-    this.onDelete.emit(user);
+  addUserToList(user, list) {
+    list.push(user);
   }
 
-  deleteUserFromList(name: string): void {
-    this.user_list = this.user_list.filter((user) => user !== name);
+  deleteUserFromList(name: string, list): void {
+    list = list.filter((user) => user !== name);
   }
 
 }

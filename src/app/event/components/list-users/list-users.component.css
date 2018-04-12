@@ -1,7 +1,10 @@
+table {
+    width: 100%; 
+}
+
 th {
     font-weight: 400;
     font-size: 30px;
-    width: 33%;
 }
 
 td {
@@ -9,14 +12,24 @@ td {
     font-size: 30px;
 }
 
-a {
+.action_button_column {
+    width: 75px;
+}
+
+.table_header_button {
+    text-align: right;
+    color: #f4faff;
     cursor: pointer;
+    text-shadow: 3px 6px #272634;
+}
+.table_header_button:active {
+    transform: translateY(4px);
+  }
+
+.table_header_button:hover {
+    color: #58a4b0
 }
 
-.action_cell {
-    width: 10%;
-}
-
-.user_cell{
-    text-align: left;
+table_header_button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }

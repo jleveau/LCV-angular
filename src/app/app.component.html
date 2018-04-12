@@ -1,20 +1,21 @@
-<div  class="wrapper">
-  <div class="alerts">
-      <app-alerts></app-alerts>
+<div>
+  <div *ngIf="isLoggedIn(); else loggin">
+    <div  class="wrapper">
+      <div class="header">
+        <div class="alerts">
+            <app-alerts></app-alerts>
+        </div>
+        <app-user-panel  class="user_panel"></app-user-panel>
+      </div>
+      <div class="menu"> </div>
+      <div class="right"> </div>
+      <div class="main">
+        <router-outlet></router-outlet>    
+      </div>
+      <div class="footer"></div>
+    </div>
   </div>
 
-  <div class="menu">
-    menu
-  </div>
-  <div class="right">
-    right
-  </div>
-  <div class="main">
-      Badminton  
-    <router-outlet></router-outlet>
-  </div>
-  <div class="footer">
-    footer
-  </div>
+  <ng-template class="register-panel" #loggin>
+  </ng-template>
 </div>
-

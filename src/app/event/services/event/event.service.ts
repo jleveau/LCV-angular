@@ -8,20 +8,9 @@ import { Observable } from 'rxjs/Observable';
 export class EventService {
 
   event: Event;
-  userSelectedSubject: Subject<string>;
-
 
   constructor(private eventHttpService: EventHttpService) {
     this.eventHttpService = eventHttpService;
-    this.userSelectedSubject = new Subject<string>();
-  }
-
-  getUserSelectedObservable() : Observable<string> {
-    return this.userSelectedSubject.asObservable()
-  }
-
-  updateSelectedUser(user) {
-    this.userSelectedSubject.next(user);
   }
 
   isAvailable() : Boolean {
@@ -80,27 +69,6 @@ export class EventService {
   getUnavailableUsers(): String[] {
     if (this.event) {
       return this.event.liste_absents;
-    }
-  }
-
-  deleteAvailableUser(name: string): void {
-    if (name && this.event) {
-      this.event.deleteAvailableUserByName(name);
-      this.eventHttpService.updateEvent(this.event);
-    }
-  }
-
-  deleteUncertainUser(name: string): void {
-    if (name && this.event) {
-      this.event.deleteUncertainUserByName(name);
-      this.eventHttpService.updateEvent(this.event);
-    }
-  }
-
-  deleteUnavailableUser(name: string): void {
-    if (name && this.event) {
-      this.event.deleteUnavailableUserByName(name);
-      this.eventHttpService.updateEvent(this.event);
     }
   }
 

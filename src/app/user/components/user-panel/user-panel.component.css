@@ -1,0 +1,10 @@
+.user-panel-content {
+    height: 100%;
+    width: 100%;
+    display: flex; 
+}
+
+.user-panel-icon {
+    font-size: 4em;
+    align-self: center;
+}

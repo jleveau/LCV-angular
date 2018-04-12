@@ -20,7 +20,6 @@ if (config.sslOptions.passphrase) {
 if (config.sslOptions.ca) {
   options.ca = fs.readFileSync(config.sslOptions.ca, "utf8")
 }
-  console.log(options.passphrase )
 process.env.TZ = 'Europe/Paris' 
 
 app.use(forceSSL)

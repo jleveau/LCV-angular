@@ -1,9 +1,16 @@
-<div class="flex_content">
-  <div *ngIf="serviceAvailable(); else loading">
-    <h2>{{getEventDate() | date:"fullDate"}} de {{getEventDate() | date: "shortTime"}}h à {{getEventEndDate() | date: "shortTime"}}h</h2>
-        <app-list-users [user_list]="getAvailableUsers()"></app-list-users>
+<div class="event"  >
+ <div *ngIf="serviceAvailable(); else loading">
+    <h1 class="event_title">{{title}}</h1>
+    <h2 class="event_date">{{getEventDate() | date:"fullDate"}} de {{getEventDate() | date: "shortTime"}}h à {{getEventEndDate() | date: "shortTime"}}h</h2>
+    <div class="event-content">
+        <app-list-users 
+        [participating_list]="getAvailableUsers()"
+        [not_participating_list]="getUnavailableUsers()"
+        [maybe_list]="getUncertainUsers()"
+        ></app-list-users>
+    </div>
   </div>
   <ng-template class="loading" #loading>
-    <div class="loader"></div>
-  </ng-template>
+    <app-loader></app-loader>
+ </ng-template>
 </div>

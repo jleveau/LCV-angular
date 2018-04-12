@@ -9,7 +9,7 @@ import { Subject }    from 'rxjs/Subject';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-
+  title = "Badminton"
   constructor(private eventService: EventService) {
     this.eventService = eventService;
   }
@@ -28,15 +28,6 @@ export class EventComponent implements OnInit {
         this.getEvent();
       }, 2000)
     })
-  }
-
-  isTimedLimited(): Boolean {
-    const date = this.eventService.getEventDate();
-    const end_date = this.eventService.getEventEndAt();
-    if (!end_date) {
-      return false;
-    }
-    return date.getTime() !== end_date.getTime();
   }
 
   serviceAvailable(): Boolean {
@@ -61,18 +52,6 @@ export class EventComponent implements OnInit {
 
   getUnavailableUsers(): String[] {
     return this.eventService.getUnavailableUsers();
-  }
-
-  deleteAvailableUser(name: string) {
-    this.eventService.deleteAvailableUser(name);
-  }
-
-  deleteUncertainUser(name: string) {
-    this.eventService.deleteUncertainUser(name);
-  }
-
-  deleteUnavailableUser(name: string) {
-    this.eventService.deleteUnavailableUser(name);
   }
 
 }
