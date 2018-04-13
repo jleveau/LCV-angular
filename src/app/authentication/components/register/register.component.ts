@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from '../../elements/auth';
 
 @Component({
   selector: 'app-register',
@@ -8,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   currentPanel = "login"
-
+  auth:Auth =  new Auth();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  loggin() {
+   
+  }
+
+  register() {
+    
   }
 
 }

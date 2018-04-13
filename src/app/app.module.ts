@@ -22,8 +22,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LoaderComponent } from './tools/loader/loader.component';
 import { UserPanelComponent } from './user/components/user-panel/user-panel.component';
 import { UserService } from './user/services/user/user.service';
-import { UserHttpService } from './user/services/http/user-http.service';
 import { RegisterComponent } from './authentication/components/register/register.component';
+import { AuthenticateHttpService } from './authentication/services/http/authenticate-http.service';
+import { AuthenticationService } from './authentication/services/authentication/authentication.service';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -55,8 +56,9 @@ registerLocaleData(localeFr, 'fr');
     AlertsService,
     EventHttpService,
     UserService,
-    UserHttpService,
-    { provide: LOCALE_ID, useValue: 'fr'}],
+    AuthenticationService,
+    AuthenticateHttpService,
+    { provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
