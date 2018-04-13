@@ -1,3 +1,30 @@
-<p>
-  register works!
-</p>
+<div class="registration-wrapper">
+  <div class="placeholder_l"></div>
+  <div class="main">
+    <div class="forms">
+      <div *ngIf="currentPanel=='login'; else registration_form" 
+            class="lcv-form-group form-group">
+          <input class="lcv-form-item form-control" placeholder="Nom d'utilisateur">
+          <input class="lcv-form-item form-control" placeholder="Mot de passe"> 
+          <a class="green button registration-button">Se connecter</a>
+      </div>
+      <ng-template #registration_form>
+        <div class="lcv-form-group form-group">
+          <input class="form-control lcv-form-item" placeholder="Nom d'utilisateur">
+          <input class="form-control lcv-form-item" placeholder="Mot de passe">
+          <input class="form-control lcv-form-item" placeholder="Confimer le mot de passe">
+          <a class="green button registration-button">S'inscrire</a>
+        </div>          
+      </ng-template>
+    </div>
+    <div class="form-select">
+      <div *ngIf="currentPanel=='login'; else registration_select" >
+          <p class="panel-selector" (click)="currentPanel='registration'">Inscription</p>
+        </div>
+          <ng-template class="register-panel" #registration_select>
+            <p class="panel-selector" (click)="currentPanel='login'">Connexion</p>
+          </ng-template>
+        </div>
+    </div>
+  <div class="placeholder_r"></div>
+</div>

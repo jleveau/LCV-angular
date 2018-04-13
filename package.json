@@ -1,6 +1,6 @@
 {
-  "name": "badApp",
-  "version": "0.0.0",
+  "name": "Le Cerf Vert",
+  "version": "0.1.0",
   "license": "MIT",
   "scripts": {
     "start": "ng serve --open",
