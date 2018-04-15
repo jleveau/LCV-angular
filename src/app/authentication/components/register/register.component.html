@@ -1,38 +1,43 @@
+<div class= "wrapper">
+    <div class = "alerts">
+        <app-alerts></app-alerts>
+     </div>
 <div class="registration-wrapper">
   <div class="placeholder_l"></div>
-  <div class="main">
-      <form class="forms" *ngIf="currentPanel=='login'; else registration_form"
-           (ngSubmit)="loggin()" #logginForm="ngForm">
-          <div  class="lcv-form-group form-group">
-          <input class="lcv-form-item form-control" placeholder="Nom d'utilisateur"
-            required [(ngModel)]="auth.username" name="username">
-          <input class="lcv-form-item form-control" placeholder="Mot de passe"
-            required [(ngModel)]="auth.password" name="password" type="password"> 
-          <button type="submit" class="green button registration-button">Se connecter</button>
-        </div>
-      </form>
-      <ng-template #registration_form>
-        <form class="forms"
-          (ngSubmit)="register()" #registrationForm="ngForm">
-          <div  class="lcv-form-group form-group">
-            <input class="form-control lcv-form-item" placeholder="Nom d'utilisateur"
+    <div class="main">
+        <form class="forms" *ngIf="currentPanel=='login'; else registration_form"
+            (ngSubmit)="loggin()" #logginForm="ngForm">
+            <div  class="lcv-form-group form-group">
+            <input class="lcv-form-item form-control" placeholder="Nom d'utilisateur"
               required [(ngModel)]="auth.username" name="username">
-            <input class="form-control lcv-form-item" placeholder="Mot de passe"
-              required [(ngModel)]="auth.password" name="password" type="password">
-            <input class="form-control lcv-form-item" placeholder="Confimer le mot de passe"
-              required [(ngModel)]="auth.confirm" name="confirm" type="password">
-            <button type="submit"class="green button registration-button">S'inscrire</button>
+            <input class="lcv-form-item form-control" placeholder="Mot de passe"
+              required [(ngModel)]="auth.password" name="password" type="password"> 
+            <button type="submit" class="green button registration-button">Se connecter</button>
           </div>
-        </form>          
-      </ng-template>
-    <div class="form-select">
-      <div *ngIf="currentPanel=='login'; else registration_select" >
-          <p class="panel-selector" (click)="currentPanel='registration'">Inscription</p>
-        </div>
-          <ng-template class="register-panel" #registration_select>
-            <p class="panel-selector" (click)="currentPanel='login'">Connexion</p>
-          </ng-template>
-        </div>
-    </div>
-  <div class="placeholder_r"></div>
+        </form>
+        <ng-template #registration_form>
+          <form class="forms"
+            (ngSubmit)="register()" #registrationForm="ngForm">
+            <div  class="lcv-form-group form-group">
+              <input class="form-control lcv-form-item" placeholder="Nom d'utilisateur"
+                required [(ngModel)]="auth.username" name="username">
+              <input class="form-control lcv-form-item" placeholder="Mot de passe"
+                required [(ngModel)]="auth.password" name="password" type="password">
+              <input class="form-control lcv-form-item" placeholder="Confimer le mot de passe"
+                required [(ngModel)]="auth.confirm" name="confirm" type="password">
+              <button type="submit"class="green button registration-button">S'inscrire</button>
+            </div>
+          </form>          
+        </ng-template>
+      <div class="form-select">
+        <div *ngIf="currentPanel=='login'; else registration_select" >
+            <p class="panel-selector" (click)="currentPanel='registration'">Inscription</p>
+          </div>
+            <ng-template class="register-panel" #registration_select>
+              <p class="panel-selector" (click)="currentPanel='login'">Connexion</p>
+            </ng-template>
+          </div>
+      </div>
+    <div class="placeholder_r"></div>
+  </div>
 </div>

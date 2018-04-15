@@ -15,8 +15,4 @@ export class UserPanelComponent implements OnInit {
   ngOnInit() {
   }
 
-  isLoggedIn() {
-    return this.userService.isLoggedIn()
-  }
-
 }

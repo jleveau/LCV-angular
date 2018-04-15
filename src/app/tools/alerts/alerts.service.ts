@@ -6,7 +6,7 @@ import { Alert, Level } from './alert';
 export class AlertsService {
 
   alerts: Alert[];
-
+  alertTimeout: number= 5000;
   constructor() {
     this.alerts = [];
   }
@@ -15,15 +15,16 @@ export class AlertsService {
     const alert = this.alerts.find((alert) => alert.message === message);
     if (alert) {
       alert.incCardinality();
-      alert.setTimeOut(() =>
+      alert.setTimeOut(() => 
         this.alerts = this.alerts.filter((other_alert) => alert.message !== other_alert.message)
-        , 3000);
+        , this.alertTimeout);
     } else {
       const newAlert = new Alert(message, level);
       this.alerts.push(newAlert);
+
       newAlert.setTimeOut(() =>
         this.alerts = this.alerts.filter((other_alert) => newAlert.message !== other_alert.message)
-        , 3000);
+        , this.alertTimeout);
     }
   }
 

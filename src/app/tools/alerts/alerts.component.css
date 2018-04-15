@@ -2,4 +2,10 @@
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
     z-index: 10;
+    width: 100%;
+     
+}
+
+.alert-cardinality {
+    margin: 1em;
 }

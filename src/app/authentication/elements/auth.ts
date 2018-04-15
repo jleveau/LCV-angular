@@ -6,9 +6,9 @@ export class Auth {
     constructor() {}
 
     validate() {
-        if (this.confirm) {
-            return this.confirm === this.password
+        if (this.confirm !== this.password) {
+            return "Les mots de passes ne correspondent pas."
         }
-        return true;
+        return null
     }
 }
