@@ -59,13 +59,12 @@
     display: grid;
     height: 100vh;
     grid-template-rows: 10% 80% 10%;
-
+    grid-template-columns: 12.5% 75% 12.5%;
     grid-template-areas:
-      'menu header header header header right'
-      'menu main main main main right'
-      'footer footer footer footer footer footer';
+      'menu header right'
+      'menu main right'
+      'footer footer footer';
     grid-gap: 5px;
     background-color: #2b303a;
-
 }
 

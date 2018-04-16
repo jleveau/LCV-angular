@@ -1,25 +1,49 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { User } from '../../elements/user';
 import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
 
-  currentUser: User;
+  userSubject$: Subject<User>;
+  user: User;
+
   
-  ngOnInit() {
-
-  }
-
   constructor() {
+    this.userSubject$ = new Subject();
+    this.userSubject$.subscribe((user) => {
+      this.user = user
+    });
   }
 
   isLoggedIn() {
-    return this.currentUser
+    if (this.user) {
+      return this.user
+    }
+    let data = localStorage.getItem('currentUser');
+    try {
+      const userJSON = JSON.parse(data) 
+      this.user = new User(userJSON.id, userJSON.username, userJSON.accessToken)
+      return this.user
+    }
+    catch {
+      return false;
+    }
+  }
+
+  getCurrentUser() {
+    return this.user
   }
 
   setCurrentUser (user: User) {
-    this.currentUser = user;
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.userSubject$.next(user);
+  }
+
+  disconnect() {
+    localStorage.removeItem('currentUser')
+    this.userSubject$.next(null)
   }
 
 }

@@ -1,4 +1,13 @@
-<div class="user-panel-content">
-      <i class="user-panel-icon fa fa-user-circle"></i>
-</div>
+<div class="dropdown user-panel-dropdown">
 
+      <a  id="user-panel-dropdown" class="user-panel-content dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="user-panel-icon fa fa-user-circle"></i>
+            <span class="user-name">{{ user.username }}</span>
+            <i class="user-menu-dropdown-arrow fa fa-angle-down"></i>
+      </a >
+
+      <div class="user-panel-dropdown-menu dropdown-menu" aria-labelledby="user-panel-dropdown">
+            <a class="user-panel-dropdown-item dropdown-item" (click)="disconnect()" >Se déconnecter</a>
+      </div>
+
+</div>

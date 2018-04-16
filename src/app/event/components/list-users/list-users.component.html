@@ -1,21 +1,24 @@
 <div>
-  <div >
+  <div>
     <table class="table ">
       <thead>
         <th class= "action_button_column">
-            <i (click)="addUserToList('toto', participating_list)" class="table_header_button fa fa-user-plus"></i>
+            <i *ngIf="canSelect()" (click)="addUserToList(participating_list)" class="table_header_button fa fa-plus"></i>
+            <i *ngIf="canChange(participating_list)" (click)="changeUserTo(participating_list)" class="table_header_button fa fa-arrow-down"></i>
         </th>
         <th>
             <span class="table_headder">Participe</span>
         </th>
         <th class= "action_button_column">
-            <i  (click)="addUserToList('toto', maybe_list)" class="table_header_button fa fa-user-plus"></i>
+            <i *ngIf="canSelect()" (click)="addUserToList(maybe_list)" class="table_header_button fa fa-plus"></i>
+            <i *ngIf="canChange(maybe_list)" (click)="changeUserTo(maybe_list)" class="table_header_button fa fa-arrow-down"></i>
         </th>
         <th>
           <span class="table_headder">Peut être</span>
         </th>
         <th class= "action_button_column">
-            <i  (click)="addUserToList('toto', not_participating_list)" class="table_header_button fa fa-user-plus"></i>
+            <i *ngIf="canSelect()"  (click)="addUserToList(not_participating_list)" class="table_header_button fa fa-plus"></i>
+            <i *ngIf="canChange(not_participating_list)" (click)="changeUserTo(not_participating_list)" class="table_header_button fa fa-arrow-down"></i>
         </th>
         <th> 
           <span class="table_headder">Ne participe pas</span></th>
@@ -23,11 +26,11 @@
       <tbody>
         <tr *ngFor="let line of getTableContent()">
           <td></td>
-          <td>{{line["participating"]}}</td>
+          <td>{{ displayUserInfo(line["participating"]) }}</td>
           <td></td>
-          <td>{{line["maybe"]}}</td>
+          <td>{{ displayUserInfo(line["maybe"]) }}</td>
           <td></td>
-          <td>{{line["not_participating"]}}</td>
+          <td>{{ displayUserInfo(line["not_participating"]) }}</td>
         </tr>
       </tbody>
     </table>

@@ -4,16 +4,16 @@ table {
 
 th {
     font-weight: 400;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 td {
     font-weight: 400;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 .action_button_column {
-    width: 75px;
+    width: 40px;
 }
 
 .table_header_button {

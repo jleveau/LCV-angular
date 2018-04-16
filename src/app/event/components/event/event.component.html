@@ -1,12 +1,12 @@
 <div class="event"  >
  <div *ngIf="serviceAvailable(); else loading">
-    <h1 class="event_title">{{title}}</h1>
+    <h1 class="event_title">{{ getEventTitle() }}</h1>
     <h2 class="event_date">{{getEventDate() | date:"fullDate"}} de {{getEventDate() | date: "shortTime"}}h à {{getEventEndDate() | date: "shortTime"}}h</h2>
     <div class="event-content">
         <app-list-users 
-        [participating_list]="getAvailableUsers()"
-        [not_participating_list]="getUnavailableUsers()"
-        [maybe_list]="getUncertainUsers()"
+        [participating_list]="getParticipants()"
+        [not_participating_list]="getAbsents()"
+        [maybe_list]="getIncertains()"
         ></app-list-users>
     </div>
   </div>

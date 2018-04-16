@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../services/event/event.service';
 import { Event } from '../../elements/event';
 import { Subject }    from 'rxjs/Subject';
+import { User } from '../../../user/elements/user';
 
 @Component({
   selector: 'app-event',
@@ -20,13 +21,10 @@ export class EventComponent implements OnInit {
 
   getEvent() {
     this.eventService.getEventNext()
-    .then((event) => {
-      this.eventService.setEvent(event);
-    })
-    .catch(() => {
-      setTimeout(() => {
-        this.getEvent();
-      }, 2000)
+      .catch(() => {
+        setTimeout(() => {
+          this.getEvent();
+        }, 2000)
     })
   }
 
@@ -34,24 +32,28 @@ export class EventComponent implements OnInit {
     return this.eventService.isAvailable();
   }
 
+  getEventTitle(): String {
+    return this.eventService.getEvent().title;
+  }
+
   getEventDate(): Date {
-    return this.eventService.getEventDate();
+    return this.eventService.getEvent().date;
   }
 
   getEventEndDate(): Date {
-    return this.eventService.getEventEndAt();
+    return this.eventService.getEvent().end_date;
   }
 
-  getAvailableUsers(): String[] {
-    return this.eventService.getAvailableUsers();
+  getParticipants(): User[] {
+    return this.eventService.getEvent().liste_participants;
   }
 
-  getUncertainUsers(): String[] {
-    return this.eventService.getUncertainUsers();
+  getAbsents(): User[] {
+    return this.eventService.getEvent().liste_absents;
   }
 
-  getUnavailableUsers(): String[] {
-    return this.eventService.getUnavailableUsers();
+  getIncertains(): User[] {
+    return this.eventService.getEvent().liste_incertains;
   }
 
 }

@@ -1,10 +1,51 @@
 .user-panel-content {
     height: 100%;
-    width: 100%;
     display: flex; 
+    align-items: center;
+    width: min-content;
 }
 
 .user-panel-icon {
-    font-size: 4em;
-    align-self: center;
+    font-size: 2em;
+}
+
+.user-name {
+    padding-left: 1em; 
+    font-size: 20px;
+    cursor: default
+}
+
+.user-panel-content:hover > .user-name {
+    text-decoration: underline;
+}
+
+.user-menu-dropdown-arrow {
+    padding-left: 0.5em; 
+    font-weight: 40px;
+}
+
+.user-panel-dropdown {
+    height: 100%
+}
+
+a  {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+a:hover {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.user-panel-dropdown-menu {
+    background-color: #77878b;
+}
+
+.user-panel-dropdown-item {
+    padding: 1em;
+}
+
+.user-panel-dropdown-item:hover{
+    text-decoration: underline;
 }

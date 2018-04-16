@@ -1,6 +1,7 @@
 <div class="alerts-header">
   <div *ngFor="let alert of getAlerts()">
-    <div class="alert alert-message" role="alert" [ngClass]="{'alert-success': alert.isSuccess(), 'alert-info': alert.isInfo(), 'alert-warning': alert.isWarning(), 'alert-danger': alert.isError() }">
+    <div class="alert alert-message alert-elem" role="alert" [ngClass]="{'alert-success': alert.isSuccess(), 'alert-info': alert.isInfo(), 'alert-warning': alert.isWarning(), 'alert-danger': alert.isError() }">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
       <span class="alert-cardinality badge badge-secondary">{{alert.cardinality}}</span>{{alert.message}}
     </div>
   </div>
