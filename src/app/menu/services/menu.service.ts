@@ -17,7 +17,7 @@ export class MenuService {
       this.selectedElement = selected
       this.redirect(this.selectedElement)
     });
-    this.elements = [new MenuItem("Evenements")]
+    this.elements = [new MenuItem("Evenements"), new MenuItem("Tricount")]
    }
 
    selectElement(element) {
@@ -35,6 +35,10 @@ export class MenuService {
    redirect(element) {
     if (element.title === "Evenements") {
       this.router.navigateByUrl("events/list")
+    }
+    if (element.title === "Tricount") {
+      this.router.navigateByUrl("tricount")
+
     }
    }
 

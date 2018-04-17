@@ -15,8 +15,8 @@ import { LOCALE_ID } from '@angular/core';
 import { AlertsComponent } from './tools/alerts/alerts.component';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
-import { TransactionButtonComponent } from './tricount/transaction-button/transaction-button.component';
-import { TransactionViewComponent } from './tricount/transaction-view/transaction-view.component';
+import { TransactionButtonComponent } from './tricount/components/transaction-button/transaction-button.component';
+import { TransactionViewComponent } from './tricount/components/transaction-view/transaction-view.component';
 import { EventListComponent } from './event/components/event-list/event-list.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { LoaderComponent } from './tools/loader/loader.component';
@@ -27,6 +27,10 @@ import { AuthenticateHttpService } from './authentication/services/http/authenti
 import { AuthenticationService } from './authentication/services/authentication/authentication.service';
 import { MenuComponent } from './menu/components/menu/menu.component';
 import { MenuService } from './menu/services/menu.service';
+import { TransactionService } from './tricount/services/transaction.service';
+import { TransactionhttpService } from './tricount/services/transactionhttp.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule, MatDialog, MatDialogModule} from '@angular/material';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -38,13 +42,13 @@ registerLocaleData(localeFr, 'fr');
     RoadmapComponent,
     EventComponent,
     AlertsComponent,
-    TransactionButtonComponent,
     TransactionViewComponent,
     EventListComponent,
     LoaderComponent,
     UserPanelComponent,
     RegisterComponent,
-    MenuComponent
+    MenuComponent,
+    TransactionButtonComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +56,14 @@ registerLocaleData(localeFr, 'fr');
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule
+  ],
+  entryComponents: [
+    TransactionButtonComponent
   ],
   providers: [
     EventService,
@@ -61,6 +72,8 @@ registerLocaleData(localeFr, 'fr');
     UserService,
     AuthenticationService,
     AuthenticateHttpService,
+    TransactionService,
+    TransactionhttpService,
     MenuService,
     { provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent]

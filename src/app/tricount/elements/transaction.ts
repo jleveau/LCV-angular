@@ -1,10 +1,12 @@
+import { User } from "../../user/elements/user";
+
 export class Transaction {
     id: string;
-    from: string;
-    to: string;
+    from: User;
+    to: any;
     val: number;
 
-    constructor(id=null, from="", to="", val=0) {
+    constructor(id=null, from: User, to, val: number) {
         this.id=id;
         this.from=from;
         this.to=to;

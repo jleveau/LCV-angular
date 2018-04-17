@@ -25,6 +25,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("in")
   }
 
   loggin() {
