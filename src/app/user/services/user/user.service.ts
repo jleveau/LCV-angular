@@ -1,7 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { User } from '../../elements/user';
 import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {

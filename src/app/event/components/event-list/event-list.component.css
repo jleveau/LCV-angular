@@ -1,0 +1,17 @@
+table {
+    width: 100%; 
+}
+
+th {
+    font-weight: 400;
+    font-size: 30px;
+}
+
+td {
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.event-line:hover {
+    text-decoration: underline;
+}

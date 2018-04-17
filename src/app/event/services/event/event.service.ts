@@ -10,6 +10,8 @@ import { AlertsService } from '../../../tools/alerts/alerts.service';
 export class EventService {
 
   event: Event;
+  event_list: Event[] = [];
+
 
   constructor(private eventHttpService: EventHttpService,
     private alertService: AlertsService) {
@@ -21,11 +23,22 @@ export class EventService {
     return this.event !== null && this.event !== undefined;
   }
 
+  refreshEvents() {
+    return this.eventHttpService.getEvents()
+      .then((events) => {
+        this.event_list = events
+      })
+      .catch((error) => {
+        this.alertService.showErrorAlert(error);
+    })
+  }
+
   getEventNext(): Promise<Event> {
     return new Promise((resolve, reject ) => {
       this.eventHttpService.getEventNext()
       .then((event) => {
         this.setEvent(event)
+        return resolve()
       })
       .catch((error) => {
         this.alertService.showErrorAlert(error);
@@ -34,7 +47,11 @@ export class EventService {
     }) 
   }
 
-  getEvent() {
+  getAllEvents() : Event[] {
+    return this.event_list;
+  }
+
+  getEvent() :Event{
     return this.event
   }
 

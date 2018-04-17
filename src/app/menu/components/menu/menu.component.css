@@ -1,0 +1,23 @@
+.menu-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    height: 100%;
+}
+
+.menu-item {
+    padding: 1.5em;
+    cursor: default;
+}
+
+.menu-item:hover {
+    text-decoration: underline
+}
+
+.menu-item-list {
+    margin-top: 1.2em;
+    font-size: 1.5em;
+    overflow: auto;
+}
+

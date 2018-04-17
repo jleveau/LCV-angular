@@ -10,17 +10,22 @@ import { User } from '../../../user/elements/user';
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
-  title = "Badminton"
+  isLoading: boolean
+  
   constructor(private eventService: EventService) {
     this.eventService = eventService;
   }
 
   ngOnInit() {
-    this.getEvent();
+    this.getEvent()
   }
 
   getEvent() {
-    this.eventService.getEventNext()
+    this.isLoading = true
+    return this.eventService.getEventNext()
+      .then(() => {
+        this.isLoading = false
+      }) 
       .catch(() => {
         setTimeout(() => {
           this.getEvent();
@@ -28,9 +33,6 @@ export class EventComponent implements OnInit {
     })
   }
 
-  serviceAvailable(): Boolean {
-    return this.eventService.isAvailable();
-  }
 
   getEventTitle(): String {
     return this.eventService.getEvent().title;

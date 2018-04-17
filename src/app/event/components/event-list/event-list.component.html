@@ -1,3 +1,25 @@
-<p>
-  event-list works!
-</p>
+<div class="event-list-wrapper" *ngIf="!isLoading; else loading">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="col-md-3">Titre</th>
+            <th class="col-md-3">Participants</th>
+            <th class="col-md-3">Début</th>
+            <th class="col-md-3">Fin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="event-line" *ngFor="let event of getEvents()" (click)="goToEvent(event)">
+            <td class="col-md-3"> {{ event.title }} </td>
+            <td class="col-md-3"> {{ event.liste_participants.length }}</td>
+            <td class="col-md-3"> {{ event.date | date:"fullDate"}} : {{ event.date | date: "shortTime"}} </td>
+            <td class="col-md-3"> {{ event.end_date | date:"fullDate"}} : {{ event.end_date | date: "shortTime"}} </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  <ng-template #loading>
+      <app-loader></app-loader>
+  </ng-template>
+</div>

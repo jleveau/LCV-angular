@@ -1,0 +1,7 @@
+<div class="menu-wrapper">
+  <div class="menu-item-list">
+    <div (click)="selectElement(item)" class="menu-item" *ngFor="let item of getListElement()">
+      {{ item.title }}
+    </div>
+  </div>
+</div>

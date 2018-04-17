@@ -13,6 +13,25 @@ export class EventHttpService {
     this.http = http;
   }
 
+  getEvents(): Promise<Event[]> {
+    return new Promise<Event[]>((resolve, reject) => {
+      this.http.get<any>(this.event_url + "/all")
+        .subscribe((response) => {
+          if (response.error) {
+            reject(response.error);
+          } else {
+            if (response.events) {
+              const events = response.events.map(event =>toEvent(event))
+              return resolve(events);
+            }
+          }
+        }, (error) => {
+          reject(error.message);
+        })
+    });
+  }
+  
+
   getEventNext(): Promise<Event> {
     return new Promise<Event>((resolve, reject) => {
       this.http.get<any>(this.event_url + "/next")
@@ -21,16 +40,7 @@ export class EventHttpService {
             reject(response.error);
           } else {
             if (response.event) {
-              const event = new Event(
-                response.event._id,
-                response.event.title,
-                response.event.not_participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
-                response.event.participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
-                response.event.uncertains.map(userData => new User(userData._id, userData.username, userData.accessToken)),
-                response.event.end_date,
-                response.event.date,
-                response.event.event_limit_date)
-              return resolve(event);
+              return resolve(toEvent(response.event));
             }
           }
         }, (error) => {
@@ -63,3 +73,13 @@ export class EventHttpService {
 
 }
 
+function toEvent(event: any) : Event {
+  return new Event(event._id,
+                  event.title,
+                  event.not_participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
+                  event.participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
+                  event.uncertains.map(userData => new User(userData._id, userData.username, userData.accessToken)),
+                  event.end_date,
+                  event.date,
+                  event.event_limit_date)
+}

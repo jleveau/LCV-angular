@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent }         from './app.component';
 import { RoadmapComponent }     from './roadmap/roadmap.component';
 import { EventComponent } from './event/components/event/event.component'
+import { EventListComponent } from './event/components/event-list/event-list.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/main', pathMatch: 'full' },
-  { path: 'main', component: EventComponent },
-  { path: 'roadmap', component: RoadmapComponent },
+  { path: '', redirectTo: '/event/list', pathMatch: 'full' },
+  { path: 'event', component: EventComponent },
+  { path: 'events/list', component: EventListComponent }
+
 ];
 
 @NgModule({

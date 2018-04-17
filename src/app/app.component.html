@@ -1,5 +1,4 @@
-<div>
-  <div *ngIf="isLoggedIn(); else loggin">
+<div class="app-root"  *ngIf="isLoggedIn(); else loggin">
     <div  class="wrapper">
       <div class="header">
         <div class="alerts">
@@ -7,14 +6,15 @@
         </div>
         <app-user-panel  class="user_panel"></app-user-panel>
       </div>
-      <div class="menu"> </div>
+      <div class="menu"> 
+        <app-menu></app-menu>
+      </div>
       <div class="right"> </div>
       <div class="main">
         <router-outlet></router-outlet>    
       </div>
       <div class="footer"></div>
     </div>
-  </div>
 
   <ng-template class="register-panel" #loggin>
     <app-register></app-register>

@@ -25,6 +25,8 @@ import { UserService } from './user/services/user/user.service';
 import { RegisterComponent } from './authentication/components/register/register.component';
 import { AuthenticateHttpService } from './authentication/services/http/authenticate-http.service';
 import { AuthenticationService } from './authentication/services/authentication/authentication.service';
+import { MenuComponent } from './menu/components/menu/menu.component';
+import { MenuService } from './menu/services/menu.service';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -41,7 +43,8 @@ registerLocaleData(localeFr, 'fr');
     EventListComponent,
     LoaderComponent,
     UserPanelComponent,
-    RegisterComponent
+    RegisterComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ registerLocaleData(localeFr, 'fr');
     UserService,
     AuthenticationService,
     AuthenticateHttpService,
+    MenuService,
     { provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent]
 })

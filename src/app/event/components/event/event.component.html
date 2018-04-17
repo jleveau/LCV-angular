@@ -1,5 +1,5 @@
-<div class="event"  >
- <div *ngIf="serviceAvailable(); else loading">
+<div>
+ <div *ngIf="!isLoading; else loading">
     <h1 class="event_title">{{ getEventTitle() }}</h1>
     <h2 class="event_date">{{getEventDate() | date:"fullDate"}} de {{getEventDate() | date: "shortTime"}}h à {{getEventEndDate() | date: "shortTime"}}h</h2>
     <div class="event-content">
