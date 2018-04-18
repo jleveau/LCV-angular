@@ -1,7 +1,5 @@
 <div class="menu-wrapper">
-  <div class="menu-item-list">
-    <div (click)="selectElement(item)" class="menu-item" *ngFor="let item of getListElement()">
-      {{ item.title }}
-    </div>
-  </div>
+    <mat-list class= "menu-item-list">
+      <mat-list-item class="menu-item" (click)="selectElement(item)" *ngFor="let item of getListElement()">  {{ item.title }} </mat-list-item>
+    </mat-list>
 </div>

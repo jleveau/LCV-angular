@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlertsService } from './tools/alerts/alerts.service';
 import { ListUsersComponent } from './event/components/list-users/list-users.component';
 import { RoadmapComponent } from './roadmap/roadmap.component';
@@ -29,8 +29,10 @@ import { MenuComponent } from './menu/components/menu/menu.component';
 import { MenuService } from './menu/services/menu.service';
 import { TransactionService } from './tricount/services/transaction.service';
 import { TransactionhttpService } from './tricount/services/transactionhttp.service';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatDialog, MatDialogModule} from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatCheckboxModule, MatDialog, MatDialogModule, MatListModule, MatDatepicker, MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatFormFieldControl, MatInputModule } from '@angular/material';
+import { FormComponent } from './event/components/form/form.component';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -48,19 +50,27 @@ registerLocaleData(localeFr, 'fr');
     UserPanelComponent,
     RegisterComponent,
     MenuComponent,
-    TransactionButtonComponent
+    TransactionButtonComponent,
+    FormComponent
   ],
   imports: [
+    MatButtonModule,
+    MatCheckboxModule,
+    MatDialogModule,
+    MatListModule,
+    MatNativeDateModule,
+    MatFormFieldModule,
+    MatInputModule,
     BrowserModule,
     NgbModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatDialogModule
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   entryComponents: [
     TransactionButtonComponent

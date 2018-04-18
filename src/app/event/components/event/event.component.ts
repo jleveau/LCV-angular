@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../services/event/event.service';
 import { Event } from '../../elements/event';
-import { Subject }    from 'rxjs/Subject';
+import { Subject } from 'rxjs/Subject';
 import { User } from '../../../user/elements/user';
 
 @Component({
@@ -11,7 +11,7 @@ import { User } from '../../../user/elements/user';
 })
 export class EventComponent implements OnInit {
   isLoading: boolean
-  
+  event: Event
   constructor(private eventService: EventService) {
     this.eventService = eventService;
   }
@@ -21,16 +21,23 @@ export class EventComponent implements OnInit {
   }
 
   getEvent() {
-    this.isLoading = true
-    return this.eventService.getEventNext()
-      .then(() => {
-        this.isLoading = false
-      }) 
-      .catch(() => {
-        setTimeout(() => {
-          this.getEvent();
-        }, 2000)
-    })
+    this.event = this.eventService.getEvent()
+    if (this.event)
+      return this.event
+    else {
+      this.isLoading = true
+
+      if (!this.event)
+        return this.eventService.getEventNext()
+          .then(() => {
+            this.isLoading = false
+          })
+          .catch(() => {
+            setTimeout(() => {
+              this.getEvent();
+            }, 2000)
+          })
+    }
   }
 
 

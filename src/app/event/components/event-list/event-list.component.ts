@@ -14,10 +14,10 @@ export class EventListComponent implements OnInit {
   isLoading: boolean
 
   constructor(private eventService: EventService,
-    private router: Router ) {
+    private router: Router) {
     this.eventService = eventService
     this.router = router
-   }
+  }
 
   ngOnInit() {
     this.isLoading = true
@@ -27,13 +27,17 @@ export class EventListComponent implements OnInit {
     }, this.refreshEventTimer)
   }
 
-  getEvents() :Event[]{
+  getEvents(): Event[] {
     return this.eventService.getAllEvents()
   }
 
   goToEvent(event: Event) {
     this.eventService.setEvent(event)
     this.router.navigateByUrl('event')
+  }
+
+  redirectCreateEvent() {
+    this.router.navigateByUrl('event/create')
   }
 
 }

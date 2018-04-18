@@ -15,3 +15,11 @@ td {
 .event-line:hover {
     text-decoration: underline;
 }
+
+.button-group {
+    padding: 25px;
+}
+
+.button-group > button {
+    font-size: 25px;
+}

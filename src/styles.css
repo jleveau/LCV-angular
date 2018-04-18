@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "~ng-pick-datetime/assets/style/picker.min.css";
 html body {
     color: #f4faff;
     font-family: 'Montserrat', sans-serif;
@@ -8,4 +9,32 @@ html body {
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+
+.lcv-form {
+    font-size: 25px;
+    color: #f4faff;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.mat-form-field-label {
+    color:  #f4faff;
+}
+
+form  {
+    color:  #f4faff;
+  }
+
+  
+.owl-dt-container {
+    font-size: 1.5em;
+    color: black;
+}
+
+textarea.mat-input-element {
+    background-color: #2b303a;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 }

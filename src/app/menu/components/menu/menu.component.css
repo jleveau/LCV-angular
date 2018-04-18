@@ -9,6 +9,8 @@
 .menu-item {
     padding: 1.5em;
     cursor: default;
+    color: rgb(244, 250, 255);
+    font-size: 1.5em;
 }
 
 .menu-item:hover {
@@ -17,7 +19,5 @@
 
 .menu-item-list {
     margin-top: 1.2em;
-    font-size: 1.5em;
-    overflow: auto;
 }
 

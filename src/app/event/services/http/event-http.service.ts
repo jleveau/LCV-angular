@@ -21,7 +21,7 @@ export class EventHttpService {
             reject(response.error);
           } else {
             if (response.events) {
-              const events = response.events.map(event =>toEvent(event))
+              const events = response.events.map(event => toEvent(event))
               return resolve(events);
             }
           }
@@ -30,7 +30,7 @@ export class EventHttpService {
         })
     });
   }
-  
+
 
   getEventNext(): Promise<Event> {
     return new Promise<Event>((resolve, reject) => {
@@ -55,6 +55,35 @@ export class EventHttpService {
         event:
           {
             _id: event.id,
+            description: event.description,
+            date: event.date,
+            end_date: event.date,
+            participants: event.liste_participants.map(user => user.id),
+            not_participants: event.liste_absents.map(user => user.id),
+            uncertains: event.liste_incertains.map(user => user.id)
+          }
+      }).subscribe((response) => {
+        if (response.error) {
+          reject(response.error);
+        } else {
+          resolve(response.event);
+        }
+      }, ((error) => {
+        reject(error.message);
+      }));
+    });
+  }
+
+  createEvent(event: Event): Promise<Event> {
+    return new Promise<Event>((resolve, reject) => {
+      this.http.post<any>(this.event_url + "/new", {
+        event:
+          {
+            _id: event.id,
+            title: event.title,
+            description: event.description,
+            date: event.date,
+            end_date: event.date,
             participants: event.liste_participants.map(user => user.id),
             not_participants: event.liste_absents.map(user => user.id),
             uncertains: event.liste_incertains.map(user => user.id)
@@ -73,13 +102,14 @@ export class EventHttpService {
 
 }
 
-function toEvent(event: any) : Event {
+function toEvent(event: any): Event {
   return new Event(event._id,
-                  event.title,
-                  event.not_participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
-                  event.participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
-                  event.uncertains.map(userData => new User(userData._id, userData.username, userData.accessToken)),
-                  event.end_date,
-                  event.date,
-                  event.event_limit_date)
+    event.title,
+    event.not_participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
+    event.participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
+    event.uncertains.map(userData => new User(userData._id, userData.username, userData.accessToken)),
+    event.end_date,
+    event.date,
+    event.event_limit_date,
+    event.description)
 }

@@ -34,7 +34,7 @@ export class MenuService {
 
    redirect(element) {
     if (element.title === "Evenements") {
-      this.router.navigateByUrl("events/list")
+      this.router.navigateByUrl("event/list")
     }
     if (element.title === "Tricount") {
       this.router.navigateByUrl("tricount")
