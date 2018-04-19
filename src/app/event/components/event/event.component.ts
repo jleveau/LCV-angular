@@ -17,52 +17,25 @@ export class EventComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getEvent()
+    this.isLoading = true
+    this.getEvent().then((event) => {
+      this.event = event
+      this.isLoading = false
+    })
   }
 
-  getEvent() {
-    this.event = this.eventService.getEvent()
-    if (this.event)
-      return this.event
-    else {
-      this.isLoading = true
-
-      if (!this.event)
+  getEvent(): Promise<Event> {
+    return new Promise<Event>((resolve, reject) => {
+      const event = this.eventService.getEvent()
+      if (event) {
+        return resolve(event)
+      } else {
         return this.eventService.getEventNext()
-          .then(() => {
-            this.isLoading = false
+          .then((event) => {
+            return resolve(event)
           })
-          .catch(() => {
-            setTimeout(() => {
-              this.getEvent();
-            }, 2000)
-          })
-    }
-  }
-
-
-  getEventTitle(): String {
-    return this.eventService.getEvent().title;
-  }
-
-  getEventDate(): Date {
-    return this.eventService.getEvent().date;
-  }
-
-  getEventEndDate(): Date {
-    return this.eventService.getEvent().end_date;
-  }
-
-  getParticipants(): User[] {
-    return this.eventService.getEvent().liste_participants;
-  }
-
-  getAbsents(): User[] {
-    return this.eventService.getEvent().liste_absents;
-  }
-
-  getIncertains(): User[] {
-    return this.eventService.getEvent().liste_incertains;
+      }
+    })
   }
 
 }

@@ -7,7 +7,7 @@
     grid-area: header; 
     background: #77878b;
     display: grid;
-    grid-template-columns: 75% 25%;
+    grid-template-columns: 66% 33%;
     grid-template-areas:
       'alerts user';
 }
@@ -16,14 +16,14 @@
 
 .menu {
      grid-area: menu;
-     background: #2b303a
+     background: #2b303a;
+     overflow: auto;
     }
     
 .main { 
     grid-area: main; 
     text-align: left;
-    padding: 50px;
-    font-size: 50px;
+    padding: 5%;
     font-weight: 800;
     font-family: 'Montserrat', sans-serif;
     overflow-y: auto;
@@ -31,12 +31,12 @@
 }
 
 
-.main::-webkit-scrollbar {
+::-webkit-scrollbar {
 	width: 12px;
     background-color: #77878b;
 }
 
-.main::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
 	background-color: #58a4b0;

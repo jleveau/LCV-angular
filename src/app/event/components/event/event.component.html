@@ -1,9 +1,9 @@
 <div>
   <div *ngIf="!isLoading; else loading">
-    <h1 class="event_title">{{ getEventTitle() }}</h1>
-    <h2 class="event_date">{{getEventDate() | date:"fullDate"}} de {{getEventDate() | date: "shortTime"}}h à {{getEventEndDate() | date: "shortTime"}}h</h2>
+    <h1 class="event_title">{{ event.title }}</h1>
+    <h2 class="event_date">{{ event.date | date:"fullDate"}} de {{ event.date | date: "shortTime"}}h à {{ event.end_date | date: "shortTime"}}h</h2>
     <div class="event-content">
-      <app-list-users [participating_list]="getParticipants()" [not_participating_list]="getAbsents()" [maybe_list]="getIncertains()"></app-list-users>
+      <app-list-users [participating_list]="event.liste_participants" [not_participating_list]="event.liste_absents" [maybe_list]="event.liste_incertains"></app-list-users>
     </div>
   </div>
   <ng-template class="loading" #loading>

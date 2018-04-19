@@ -33,6 +33,7 @@ export class EventListComponent implements OnInit {
 
   goToEvent(event: Event) {
     this.eventService.setEvent(event)
+    console.log(this.eventService.getEvent())
     this.router.navigateByUrl('event')
   }
 

@@ -13,9 +13,8 @@ html body {
 
 
 .lcv-form {
-    font-size: 25px;
-    color: #f4faff;
-    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+   
 }
 
 .mat-form-field-label {
@@ -28,12 +27,11 @@ form  {
 
   
 .owl-dt-container {
-    font-size: 1.5em;
+    font-size: 100%;
     color: black;
 }
 
 textarea.mat-input-element {
-    background-color: #2b303a;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;

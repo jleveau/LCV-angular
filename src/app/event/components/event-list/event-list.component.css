@@ -4,12 +4,12 @@ table {
 
 th {
     font-weight: 400;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 td {
     font-weight: 400;
-    font-size: 25px;
+    font-size: 15px;
 }
 
 .event-line:hover {
@@ -17,9 +17,11 @@ td {
 }
 
 .button-group {
-    padding: 25px;
+    padding-bottom: 25px;
+    padding-top: 25px;
 }
 
-.button-group > button {
-    font-size: 25px;
+.mat-raised-button {
+    background-color: #77878b;
+    font-size: 20px;
 }

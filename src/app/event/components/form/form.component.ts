@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../services/event/event.service';
 import { Event } from '../../elements/event'
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form',
@@ -13,9 +14,11 @@ export class FormComponent implements OnInit {
   event: Event
   submitted: boolean
   loading: boolean
-  
-  constructor(private eventService: EventService) {
+
+  constructor(private eventService: EventService,
+    private router: Router) {
     this.eventService = eventService
+    this.router = router
   }
 
   ngOnInit() {
@@ -25,8 +28,11 @@ export class FormComponent implements OnInit {
   onSubmit() {
     this.loading = true
     this.eventService.create(this.event)
-      .then(() => this.loading = false)
+      .then((event) => {
+        this.loading = false
+        this.eventService.setEvent(event)
+        this.router.navigateByUrl('event')
+      })
   }
-
 
 }

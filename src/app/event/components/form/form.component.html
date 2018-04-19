@@ -1,44 +1,42 @@
 <div *ngIf="!isLoading; else loading">
 
-  <div class="container">
-    <h1 class="event_title">Evenement</h1>
-    <form class="lcv-form" (ngSubmit)="onSubmit()" #eventForm="ngForm">
-      <div class="fields-container">
+  <h1 class="event_title">Evenement</h1>
+  <form class="lcv-form" (ngSubmit)="onSubmit()" #eventForm="ngForm">
+    <div class="fields-container">
 
-        <mat-form-field>
-          <mat-label>Titre</mat-label>
-          <input matInput id="title" name="title" [(ngModel)]="event.title" required>
-          <mat-error>"Le titre est obligatoire"</mat-error>
-        </mat-form-field>
+      <mat-form-field>
+        <mat-label>Titre</mat-label>
+        <input matInput id="title" name="title" [(ngModel)]="event.title" required>
+        <mat-error>"Le titre est obligatoire"</mat-error>
+      </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Description</mat-label>
-          <textarea matInput id="description" name="description" [(ngModel)]="event.description"></textarea>
-        </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput id="description" name="description" [(ngModel)]="event.description"></textarea>
+      </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Date de début</mat-label>
-          <input matInput id="date" date="true" [owlDateTime]="date" name="date" [(ngModel)]="event.date" required>
-          <span matSuffix class="trigger" [owlDateTimeTrigger]="date">
-            <i class="fa fa-calendar"></i>
-          </span>
-          <owl-date-time #date></owl-date-time>
-        </mat-form-field>
+      <mat-form-field>
+        <mat-label>Date de début</mat-label>
+        <input matInput id="date" date="true" [owlDateTime]="date" name="date" [(ngModel)]="event.date" required>
+        <span matSuffix class="trigger" [owlDateTimeTrigger]="date">
+          <i class="fa fa-calendar"></i>
+        </span>
+        <owl-date-time #date></owl-date-time>
+      </mat-form-field>
 
-        <mat-form-field>
-          <mat-label>Date de fin</mat-label>
-          <input matInput id="end_date" date="true" [owlDateTime]="dateend" name="end_date" [(ngModel)]="event.end_date" [min]="event.date">
-          <span matSuffix class="trigger" [owlDateTimeTrigger]="dateend">
-            <i class="fa fa-calendar"></i>
-          </span>
-          <owl-date-time #dateend></owl-date-time>
-        </mat-form-field>
+      <mat-form-field>
+        <mat-label>Date de fin</mat-label>
+        <input matInput id="end_date" date="true" [owlDateTime]="dateend" name="end_date" [(ngModel)]="event.end_date" [min]="event.date">
+        <span matSuffix class="trigger" [owlDateTimeTrigger]="dateend">
+          <i class="fa fa-calendar"></i>
+        </span>
+        <owl-date-time #dateend></owl-date-time>
+      </mat-form-field>
 
-      </div>
-      <button type="submit" [disabled]="!eventForm.form.valid" mat-raised-button color="primary">Créer</button>
-    </form>
+      <button class="submit-button" type="submit" [disabled]="!eventForm.form.valid" mat-raised-button color="primary">Créer</button>
+    </div>
+  </form>
 
-  </div>
   <ng-template class="loading" #loading>
     <app-loader></app-loader>
   </ng-template>

@@ -49,9 +49,9 @@ export class EventService {
   getEventNext(): Promise<Event> {
     return new Promise((resolve, reject) => {
       this.eventHttpService.getEventNext()
-        .then((event) => {
+        .then(event => {
           this.setEvent(event)
-          return resolve()
+          return resolve(event)
         })
         .catch((error) => {
           this.alertService.showErrorAlert(error);
@@ -76,7 +76,7 @@ export class EventService {
   }
 
   setEvent(event: Event) {
-    this.event = event;
+    this.event = event
   }
 
 }

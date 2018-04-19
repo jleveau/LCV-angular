@@ -37,11 +37,9 @@ export class EventHttpService {
       this.http.get<any>(this.event_url + "/next")
         .subscribe((response) => {
           if (response.error) {
-            reject(response.error);
-          } else {
-            if (response.event) {
-              return resolve(toEvent(response.event));
-            }
+            return reject(response.error);
+          } else if (response.event) {
+            return resolve(toEvent(response.event));
           }
         }, (error) => {
           reject(error.message);

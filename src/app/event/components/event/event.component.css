@@ -1,9 +1,13 @@
 .event_title {
     font-weight: 800;
-    font-size: 48px;
+    font-size: 25px;
 }
 
 .event-content {
-    padding-top: 50px;
+    padding-top: 5%;
     height: 100%;
+}
+
+.event_date {
+    font-size: 20px
 }
