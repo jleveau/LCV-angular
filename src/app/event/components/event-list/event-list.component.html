@@ -2,26 +2,37 @@
   <div class="button-group">
     <button mat-raised-button (click)="redirectCreateEvent()">Créer un évenement</button>
   </div>
-  <div class="table-responsive">
-    <table class="table">
-      <thead>
-        <tr>
-          <th class="col-md-3">Titre</th>
-          <th class="col-md-3">Participants</th>
-          <th class="col-md-3">Début</th>
-          <th class="col-md-3">Fin</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="event-line" *ngFor="let event of getEvents()" (click)="goToEvent(event)">
-          <td class="col-md-3"> {{ event.title }} </td>
-          <td class="col-md-3"> {{ event.liste_participants.length }}</td>
-          <td class="col-md-3"> {{ event.date | date:"fullDate"}} : {{ event.date | date: "shortTime"}} </td>
-          <td class="col-md-3"> {{ event.end_date | date:"fullDate"}} : {{ event.end_date | date: "shortTime"}} </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <mat-table #table [dataSource]="getEventTab()">
+    <!-- Position Column -->
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Titre </mat-header-cell>
+      <mat-cell *matCellDef="let event"> {{event.title}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="participants">
+      <mat-header-cell *matHeaderCellDef> Participants </mat-header-cell>
+      <mat-cell *matCellDef="let event"> {{event.participants}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="start">
+      <mat-header-cell *matHeaderCellDef> Début </mat-header-cell>
+      <mat-cell *matCellDef="let event"> {{ event.date | date:"fullDate"}} : {{ event.date | date: "shortTime"}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="end">
+      <mat-header-cell *matHeaderCellDef> Fin </mat-header-cell>
+      <mat-cell *matCellDef="let event"> {{ event.end_date | date:"fullDate"}} : {{ event.end_date | date: "shortTime"}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+  </mat-paginator>
+
   <ng-template #loading>
     <app-loader></app-loader>
   </ng-template>

@@ -4,17 +4,12 @@
 html body {
     color: #f4faff;
     font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
 }
 
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-
-.lcv-form {
-    font-size: 20px;
-   
 }
 
 .mat-form-field-label {
@@ -35,4 +30,18 @@ textarea.mat-input-element {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+}
+
+.mat-table {
+    background: transparent;
+}
+
+.mat-header-cell {
+    color:  #f4faff;
+    font-size: 1em;
+}
+
+.mat-cell {
+    color:  #f4faff;
+    font-size: 1em;
 }

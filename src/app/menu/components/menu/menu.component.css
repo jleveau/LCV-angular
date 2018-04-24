@@ -2,13 +2,12 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    
+    padding-top: 2em;
 }
 
 .menu-item {
     cursor: default;
     color: rgb(244, 250, 255);
-    font-size: 1.5em;
     padding-left: 15%;
 }
 

@@ -6,12 +6,11 @@
 }
 
 .user-panel-icon {
-    font-size: 150%;
+    font-size: 1.5em;
 }
 
 .user-name {
     padding-left: 10%; 
-    font-size: 20px;
     cursor: default
 }
 
@@ -40,7 +39,6 @@ a:hover {
 
 .user-panel-dropdown-menu {
     background-color: #77878b;
-    font-size: 20px;
 }
 
 .user-panel-dropdown-item {

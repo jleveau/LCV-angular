@@ -30,7 +30,7 @@ import { MenuService } from './menu/services/menu.service';
 import { TransactionService } from './tricount/services/transaction.service';
 import { TransactionhttpService } from './tricount/services/transactionhttp.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatDialog, MatDialogModule, MatListModule, MatDatepicker, MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatFormFieldControl, MatInputModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDialog, MatDialogModule, MatListModule, MatDatepicker, MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatFormFieldControl, MatInputModule, MatTableModule, MatPaginatorModule } from '@angular/material';
 import { FormComponent } from './event/components/form/form.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
@@ -67,10 +67,12 @@ registerLocaleData(localeFr, 'fr');
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatPaginatorModule,
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    MatTableModule
   ],
   entryComponents: [
     TransactionButtonComponent

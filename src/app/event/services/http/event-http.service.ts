@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Event } from '../../elements/event';
 import { environment } from '../../../../environments/environment';
 import { User } from '../../../user/elements/user';
+import { RequestOptions } from '@angular/http';
 
 @Injectable()
 export class EventHttpService {
@@ -49,7 +50,7 @@ export class EventHttpService {
 
   updateEvent(event: Event): Promise<Event> {
     return new Promise<Event>((resolve, reject) => {
-      this.http.put<any>(this.event_url + "/update", {
+      this.http.put<any>(this.event_url + "/", {
         event:
           {
             _id: event.id,
@@ -74,10 +75,9 @@ export class EventHttpService {
 
   createEvent(event: Event): Promise<Event> {
     return new Promise<Event>((resolve, reject) => {
-      this.http.post<any>(this.event_url + "/new", {
+      this.http.post<any>(this.event_url + "/", {
         event:
           {
-            _id: event.id,
             title: event.title,
             description: event.description,
             date: event.date,
@@ -90,7 +90,8 @@ export class EventHttpService {
         if (response.error) {
           reject(response.error);
         } else {
-          resolve(response.event);
+          resolve(new Event(response.event._id, response.event.title, response.event.not_participants, response.event.participants,
+            response.event.uncertains, response.event.end_date, response.event.date, null, response.event.description));
         }
       }, ((error) => {
         reject(error.message);
@@ -98,6 +99,18 @@ export class EventHttpService {
     });
   }
 
+  deleteEvent(event: Event): Promise<any> {
+    return new Promise<Event>((resolve, reject) => {
+      if (!event.id) {
+        reject("Event does not have an id")
+      }
+      this.http.delete(this.event_url + "/" + event.id).subscribe((response) => {
+        resolve();
+      }, ((error) => {
+        reject(error.message);
+      }));
+    });
+  }
 }
 
 function toEvent(event: any): Event {
