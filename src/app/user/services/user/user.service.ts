@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { User } from '../../elements/user';
 import { Subject } from 'rxjs/Subject';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
@@ -9,22 +10,23 @@ export class UserService {
   user: User;
 
   
-  constructor() {
+  constructor(private router : Router) {
     this.userSubject$ = new Subject();
+    this.router = router;
     this.userSubject$.subscribe((user) => {
       this.user = user
     });
   }
 
-  isLoggedIn() {
+  isLoggedIn() : boolean {
     if (this.user) {
-      return this.user
+      return true
     }
     let data = localStorage.getItem('currentUser');
     try {
       const userJSON = JSON.parse(data) 
       this.user = new User(userJSON.id, userJSON.username, userJSON.accessToken)
-      return this.user
+      return true
     }
     catch {
       return false;
@@ -43,6 +45,8 @@ export class UserService {
   disconnect() {
     localStorage.removeItem('currentUser')
     this.userSubject$.next(null)
+    this.user = null
+    this.router.navigateByUrl('home')
   }
 
 }

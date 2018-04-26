@@ -6,7 +6,7 @@ import { Alert, Level } from './alert';
 export class AlertsService {
 
   alerts: Alert[];
-  alertTimeout: number= 900000;
+  alertTimeout: number= 5000;
   constructor() {
     this.alerts = [];
   }

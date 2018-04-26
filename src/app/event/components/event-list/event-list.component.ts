@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
 import { EventService } from '../../services/event/event.service';
 import { Event } from '../../elements/event';
 import { Router } from '@angular/router';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import {MatPaginator, MatTableDataSource, MatSort} from '@angular/material';
+import { UserService } from '../../../user/services/user/user.service';
 
 @Component({
   selector: 'app-event-list',
@@ -13,48 +14,76 @@ export class EventListComponent implements OnInit {
 
   private refreshEventTimer: number = 60000;
   isLoading: boolean
-  displayedColumns = ['title', 'participants', 'start', 'end'];
-  dataSource
-
+  displayedColumns = ['title', 'participants', 'author', 'start', 'end'];
+  events
+  dataSource;
+    
   @ViewChild(MatPaginator) paginator: MatPaginator;
-
-
+  @ViewChild(MatSort) sort: MatSort;
+  
   constructor(private eventService: EventService,
+    private userService: UserService,
     private router: Router) {
     this.eventService = eventService
     this.router = router
   }
 
   ngOnInit() {
-    this.isLoading = true
-    this.eventService.refreshEvents().then(() => this.isLoading = false)
-    this.dataSource = new MatTableDataSource(this.getEventTab());
-    setInterval(() => {
-      this.eventService.refreshEvents()
-    }, this.refreshEventTimer)
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    this.refreshEventTab().then((eventsTab) => {
+      this.dataSource= new MatTableDataSource(eventsTab);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    })
   }
 
-  getEventTab() {
-    const events = this.eventService.getAllEvents()
-    return events.map((event) => ({
-      title: event.title,
-      participants: event.liste_participants.length,
-      date: event.date,
-      end_date: event.end_date
-    }))
+  refreshEventTab() {
+    return new Promise<{}[]> ((resolve, reject) => {
+      this.eventService.refreshEvents().then(() => {
+        resolve(this.eventService.getAllEvents().sort((a, b) => -(a.date.getTime() - b.date.getTime())).map((event) => ({
+          id: event.id,
+          title: event.title,
+          liste_participants : event.liste_participants,
+          liste_incertains: event.liste_incertains,
+          liste_absents: event.liste_absents,
+          author: event.author ? event.author.username : null,
+          date: event.date,
+          end_date: event.end_date
+        })))
+      })
+    })
   }
 
-  goToEvent(event: Event) {
-    this.eventService.setEvent(event)
-    this.router.navigateByUrl('event')
+  participating(event) {
+    return event.liste_participants.some((participant) => {
+      return participant.id == this.userService.getCurrentUser().id
+    })
+  }
+
+  maybe(event: Event) {
+    return event.liste_incertains.some((participant) => {
+      return participant.id == this.userService.getCurrentUser().id
+    })
+  }
+
+  notParticipating(event: Event) {
+    return event.liste_absents.some((participant) => {
+      return participant.id == this.userService.getCurrentUser().id
+    })
+  }
+
+  goToEvent(eventSelected) {    
+    this.router.navigate(['event', eventSelected.id])
   }
 
   redirectCreateEvent() {
-    this.router.navigateByUrl('event/create')
+    this.router.navigateByUrl('event-create')
+  }
+
+  eventFinished(event) {
+    return this.eventService.isFinished(event)
   }
 
 }

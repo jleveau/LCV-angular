@@ -1,8 +1,10 @@
 <div>
   <div *ngIf="!isLoading; else loading">
-    <h1 class="event_title">{{ event.title }}</h1>
+    <h1 class="event_title">{{ event.title }} <span class="event-finished" *ngIf="isFinished()">(terminé)</span></h1>
     <h2 class="event_date">{{ event.date | date:"fullDate"}} de {{ event.date | date: "shortTime"}}h à {{ event.end_date | date: "shortTime"}}h</h2>
+    <p *ngIf="event.author" class="event_author">Crée par : {{ event.author.username }}</p>
     <p class="event_description">{{event.description}}</p>
+    <button mat-raised-button color="warn" *ngIf="isAuthor()" (click)="openDialog()">Supprimer</button>
     <div class="event-content">
       <app-list-users [participating_list]="event.liste_participants" [not_participating_list]="event.liste_absents" [maybe_list]="event.liste_incertains"></app-list-users>
     </div>

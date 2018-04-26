@@ -9,7 +9,7 @@ import { RoadmapComponent } from './roadmap/roadmap.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { EventService } from './event/services/event/event.service'
 import { HttpClientModule } from '@angular/common/http';
-import { EventComponent } from './event/components/event/event.component';
+import { EventComponent, DialogConfirmEventDelete } from './event/components/event/event.component';
 import { EventHttpService } from './event/services/http/event-http.service';
 import { LOCALE_ID } from '@angular/core';
 import { AlertsComponent } from './tools/alerts/alerts.component';
@@ -30,9 +30,12 @@ import { MenuService } from './menu/services/menu.service';
 import { TransactionService } from './tricount/services/transaction.service';
 import { TransactionhttpService } from './tricount/services/transactionhttp.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatDialog, MatDialogModule, MatListModule, MatDatepicker, MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatFormFieldControl, MatInputModule, MatTableModule, MatPaginatorModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDialog, MatDialogModule, MatListModule, MatDatepicker, MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatFormFieldControl, MatInputModule, MatTableModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableDataSource } from '@angular/material';
 import { FormComponent } from './event/components/form/form.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {MatSortModule} from '@angular/material/sort';
+import { MainComponent } from './main/main/main.component';
+import { MainRoutingModule } from './main/main/main-routing.module';
 
 // the second parameter 'fr' is optional
 registerLocaleData(localeFr, 'fr');
@@ -51,7 +54,9 @@ registerLocaleData(localeFr, 'fr');
     RegisterComponent,
     MenuComponent,
     TransactionButtonComponent,
-    FormComponent
+    FormComponent,
+    DialogConfirmEventDelete,
+    MainComponent
   ],
   imports: [
     MatButtonModule,
@@ -65,6 +70,7 @@ registerLocaleData(localeFr, 'fr');
     NgbModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    MainRoutingModule,
     AppRoutingModule,
     HttpClientModule,
     MatPaginatorModule,
@@ -72,10 +78,14 @@ registerLocaleData(localeFr, 'fr');
     BrowserAnimationsModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    MatTableModule
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatSortModule
+    
   ],
   entryComponents: [
-    TransactionButtonComponent
+    TransactionButtonComponent,
+    DialogConfirmEventDelete
   ],
   providers: [
     EventService,

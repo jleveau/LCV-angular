@@ -12,3 +12,8 @@
     margin: 2em;
     font-weight: 400;
 }
+
+.event-finished {
+    font-size: 0.5em;
+    font-weight: 400;
+}

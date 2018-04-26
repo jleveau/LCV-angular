@@ -28,6 +28,9 @@ export class ListUsersComponent implements OnInit {
   }
 
   canSelect() {
+    if (this.eventService.isFinished(this.eventService.currentEvent)) {
+      return false
+    }
     const user: User = this.userService.getCurrentUser()
 
     return !(this.participating_list.some(elem => elem.id === user.id) ||
@@ -44,6 +47,9 @@ export class ListUsersComponent implements OnInit {
   }
 
   canChange(list) {
+    if (this.eventService.isFinished(this.eventService.currentEvent)) {
+      return false
+    }
     const user: User = this.userService.getCurrentUser()
     return (!this.canSelect() && !list.some(elem => elem.id === user.id))
   }
@@ -89,7 +95,7 @@ export class ListUsersComponent implements OnInit {
 
   addUserToList(list) {
     list.push(this.userService.getCurrentUser());
-    const event = this.eventService.getEvent()
+    const event = this.eventService.currentEvent
     event.liste_participants = this.participating_list
     event.liste_absents = this.not_participating_list
     event.liste_incertains = this.maybe_list

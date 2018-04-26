@@ -4,6 +4,7 @@ export class Event {
     id: string;
     title: String;
     date: Date;
+    author: User;
     end_date: Date;
     event_limit_date: Date;
     liste_participants: User[];
@@ -13,6 +14,7 @@ export class Event {
 
     constructor(id = null,
         title: String = "",
+        author: User = null,
         liste_absents: User[] = [],
         list_participants: User[] = [],
         liste_incertains: User[] = [],

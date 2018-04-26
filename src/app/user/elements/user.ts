@@ -4,7 +4,7 @@ export class User {
     accessToken: string;
     constructor(id= null,
         username: string,
-        accessToken: string) {
+        accessToken: string= "") {
         this.id = id;
         this.username = username;
         this.accessToken = accessToken;

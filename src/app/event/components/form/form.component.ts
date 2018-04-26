@@ -3,6 +3,7 @@ import { EventService } from '../../services/event/event.service';
 import { Event } from '../../elements/event'
 import { Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from '../../../user/services/user/user.service';
 
 @Component({
   selector: 'app-form',
@@ -13,12 +14,14 @@ export class FormComponent implements OnInit {
 
   event: Event
   submitted: boolean
-  loading: boolean
+  isLoading: boolean
 
   constructor(private eventService: EventService,
+    private userService: UserService,
     private router: Router) {
-    this.eventService = eventService
-    this.router = router
+      this.userService = userService
+      this.eventService = eventService
+      this.router = router
   }
 
   ngOnInit() {
@@ -26,12 +29,12 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.loading = true
+    this.isLoading = true
+    this.event.author = this.userService.getCurrentUser()
     this.eventService.create(this.event)
       .then((event) => {
-        this.loading = false
-        this.eventService.setEvent(event)
-        this.router.navigateByUrl('event')
+        this.isLoading = false
+        this.router.navigate(['event', event.id])
       })
   }
 

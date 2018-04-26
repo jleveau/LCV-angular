@@ -48,6 +48,21 @@ export class EventHttpService {
     });
   }
 
+  getEventById(id): Promise<Event> {
+    return new Promise<Event>((resolve, reject) => {
+      this.http.get<any>(this.event_url + "/one/" + id)
+        .subscribe((response) => {
+          if (response.error) {
+            return reject(response.error);
+          } else if (response.event) {
+            return resolve(toEvent(response.event));
+          }
+        }, (error) => {
+          reject(error.message);
+        })
+    });
+  }
+
   updateEvent(event: Event): Promise<Event> {
     return new Promise<Event>((resolve, reject) => {
       this.http.put<any>(this.event_url + "/", {
@@ -56,7 +71,7 @@ export class EventHttpService {
             _id: event.id,
             description: event.description,
             date: event.date,
-            end_date: event.date,
+            end_date: event.end_date,
             participants: event.liste_participants.map(user => user.id),
             not_participants: event.liste_absents.map(user => user.id),
             uncertains: event.liste_incertains.map(user => user.id)
@@ -75,23 +90,35 @@ export class EventHttpService {
 
   createEvent(event: Event): Promise<Event> {
     return new Promise<Event>((resolve, reject) => {
+      const data = {
+        title: event.title,
+        author: event.author.id,
+        description: event.description,
+        date: event.date,
+        end_date: event.end_date,
+        participants: event.liste_participants.map(user => user.id),
+        not_participants: event.liste_absents.map(user => user.id),
+        uncertains: event.liste_incertains.map(user => user.id)
+      }
+      if (event.author) {
+        data.author = event.author.id
+      }
       this.http.post<any>(this.event_url + "/", {
-        event:
-          {
-            title: event.title,
-            description: event.description,
-            date: event.date,
-            end_date: event.date,
-            participants: event.liste_participants.map(user => user.id),
-            not_participants: event.liste_absents.map(user => user.id),
-            uncertains: event.liste_incertains.map(user => user.id)
-          }
+        event: data
       }).subscribe((response) => {
         if (response.error) {
           reject(response.error);
         } else {
-          resolve(new Event(response.event._id, response.event.title, response.event.not_participants, response.event.participants,
-            response.event.uncertains, response.event.end_date, response.event.date, null, response.event.description));
+          resolve(new Event(response.event._id, 
+            response.event.title, 
+            new User(response.event._id, response.event.username), 
+            response.event.not_participants,
+            response.event.participants,
+            response.event.uncertains, 
+            response.event.end_date, 
+            response.event.date, 
+            null, 
+            response.event.description));
         }
       }, ((error) => {
         reject(error.message);
@@ -114,8 +141,9 @@ export class EventHttpService {
 }
 
 function toEvent(event: any): Event {
-  return new Event(event._id,
+  const res = new Event(event._id,
     event.title,
+    null,
     event.not_participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
     event.participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
     event.uncertains.map(userData => new User(userData._id, userData.username, userData.accessToken)),
@@ -123,4 +151,8 @@ function toEvent(event: any): Event {
     event.date,
     event.event_limit_date,
     event.description)
+    if (event.author) {
+      res.author = new User(event.author._id, event.author.username)
+    }
+    return res
 }

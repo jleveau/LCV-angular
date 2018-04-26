@@ -5,6 +5,8 @@
         "passphrase": "passphrase"
         },
     "services":{
-        "events": "localhost:3001"
-    }
+        "events": "localhost:3001",
+        "users":  "localhost:3002"
+    },
+    "https": false
 }

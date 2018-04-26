@@ -10,8 +10,9 @@ td {
     font-weight: 400;
 }
 
-.event-line:hover {
+.mat-row:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .button-group {
@@ -21,4 +22,8 @@ td {
 
 .mat-raised-button {
     background-color: #77878b;
+}
+
+.event-finished > .mat-cell {
+    color: #77878b
 }

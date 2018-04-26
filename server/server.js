@@ -22,7 +22,10 @@ if (config.sslOptions.ca) {
 }
 process.env.TZ = 'Europe/Paris' 
 
-app.use(forceSSL)
+console.log(config.https)
+if (config.https) {
+  app.use(forceSSL)
+}
 app.use(express.static(path.resolve(path.join(__dirname, "../dist"))))
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "html")
@@ -32,6 +35,8 @@ app.use(morgan('dev'))
 
 //redirecting event app
 app.use('/api/events', proxy({target: 'http://' + config.services.events, changeOrigin: true}));
+app.use('/api/users', proxy({target: 'http://' + config.services.users, changeOrigin: true}));
+
 
 //Serving angular application
 app.get('*', (req, res) => res.sendFile(path.join(__dirname, '../dist/index.html')))

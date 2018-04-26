@@ -5,5 +5,5 @@
 export const environment = {
   production: false,
   eventUrl: 'http://localhost:3001/api/events',
-  userUrl: 'http://localhost:3002/api/user'
+  userUrl: 'http://localhost:3002/api/users'
 };

@@ -1,18 +1,13 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { AppComponent }         from './app.component';
-import { RoadmapComponent }     from './roadmap/roadmap.component';
-import { EventComponent } from './event/components/event/event.component'
-import { EventListComponent } from './event/components/event-list/event-list.component';
-import { TransactionViewComponent } from './tricount/components/transaction-view/transaction-view.component';
-import { FormComponent } from './event/components/form/form.component';
+import { Routes, RouterModule } from "@angular/router";
+import { RegisterComponent } from "./authentication/components/register/register.component";
+import { MainComponent } from "./main/main/main.component";
+import { AuthenticationService } from "./authentication/services/authentication/authentication.service";
+import { NgModule } from "@angular/core";
 
 const routes: Routes = [
-  { path: '', redirectTo: 'event/list', pathMatch:'full'},
-  { path: 'event', component: EventComponent },
-  { path: 'event/create', component: FormComponent },
-  { path: 'event/list', component: EventListComponent },
-  { path: 'tricount', component: TransactionViewComponent }
+  { path: '', redirectTo: "/home", pathMatch: 'full'},
+  { path: 'login', component: RegisterComponent },
+  { path: 'home', component: MainComponent, canActivate: [AuthenticationService]}
 ];
 
 @NgModule({
