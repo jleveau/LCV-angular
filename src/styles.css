@@ -12,14 +12,23 @@ html body {
 
 @media screen and (max-width: 1024px){
     html body {
-        font-size: 1.5em;
+        font-size: 10px;
     }
+
     h1 {
-        font-size: 2em;
+        font-size: 10px;
     }
 
     h2 {
-        font-size: 1.5em;
+        font-size: 10px;
+    }
+
+    mat-row.mat-row {
+        padding: 0; 
+    }
+
+    mat-header-row.mat-header-row {
+        padding: 0; 
     }
 
 }
