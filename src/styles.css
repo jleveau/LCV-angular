@@ -6,7 +6,22 @@
 html body {
     color: #f4faff;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.5em;
+    font-size: 2.0em;
+}
+
+
+@media screen and (max-width: 1024px){
+    html body {
+        font-size: 1.5em;
+    }
+    h1 {
+        font-size: 2em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
 }
 
 @keyframes spin {
@@ -38,6 +53,10 @@ textarea.mat-input-element {
     background: transparent;
 }
 
+.mat-button {
+    font-size: inherit; 
+}
+
 .mat-header-cell {
     color:  #f4faff;
     font-size: 1em;
@@ -59,4 +78,13 @@ textarea.mat-input-element {
 
 .mat-icon-button {
     color: #f4faff;
+}
+
+.mat-menu-panel {
+    background: #77878b;
+}
+
+.mat-menu-item {
+    color: #f4faff;
+    font-size: inherit;
 }

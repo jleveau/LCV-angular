@@ -16,6 +16,11 @@
       </mat-form-field>
 
       <mat-form-field>
+        <mat-label>Lieu</mat-label>
+        <input matInput id="place" name="place" [(ngModel)]="event.place">
+      </mat-form-field>
+
+      <mat-form-field>
         <mat-label>Date de début</mat-label>
         <input matInput id="date" date="true" [owlDateTime]="date" name="date" [(ngModel)]="event.date" required>
         <span matSuffix class="trigger" [owlDateTimeTrigger]="date">
@@ -37,7 +42,7 @@
     </div>
   </form>
 
-  
+
 </div>
 
 <ng-template class="loading" #loading>

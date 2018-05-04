@@ -17,7 +17,7 @@ export class EventComponent implements OnInit {
   event: Event
   private sub: any;
 
-  constructor(private eventService: EventService, 
+  constructor(private eventService: EventService,
     private userService: UserService,
     private route: ActivatedRoute,
     public dialog: MatDialog,
@@ -35,7 +35,7 @@ export class EventComponent implements OnInit {
         this.event = event
         this.isLoading = false
       })
-   });
+    });
   }
 
   isFinished() {
@@ -54,7 +54,7 @@ export class EventComponent implements OnInit {
   openDialog(): void {
     let dialogRef = this.dialog.open(DialogConfirmEventDelete, {
       width: '400px',
-      data: {title: this.event.title}
+      data: { title: this.event.title }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -65,8 +65,12 @@ export class EventComponent implements OnInit {
       }
     });
   }
-
-} 
+  endSameDay(event) {
+    return event.date.getDay() === event.end_date.getDay() &&
+      event.date.getMonth() === event.end_date.getMonth() &&
+      event.date.getFullYear() === event.end_date.getFullYear()
+  }
+}
 
 @Component({
   selector: 'dialog-overview-example-dialog',

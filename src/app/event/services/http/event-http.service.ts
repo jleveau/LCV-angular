@@ -70,6 +70,7 @@ export class EventHttpService {
           {
             _id: event.id,
             description: event.description,
+            place: event.place,
             date: event.date,
             end_date: event.end_date,
             participants: event.liste_participants.map(user => user.id),
@@ -93,6 +94,7 @@ export class EventHttpService {
       const data = {
         title: event.title,
         author: event.author.id,
+        place: event.place,
         description: event.description,
         date: event.date,
         end_date: event.end_date,
@@ -109,15 +111,16 @@ export class EventHttpService {
         if (response.error) {
           reject(response.error);
         } else {
-          resolve(new Event(response.event._id, 
-            response.event.title, 
-            new User(response.event._id, response.event.username), 
+          resolve(new Event(response.event._id,
+            response.event.title,
+            new User(response.event._id, response.event.username),
+            response.event.place,
             response.event.not_participants,
             response.event.participants,
-            response.event.uncertains, 
-            response.event.end_date, 
-            response.event.date, 
-            null, 
+            response.event.uncertains,
+            response.event.end_date,
+            response.event.date,
+            null,
             response.event.description));
         }
       }, ((error) => {
@@ -144,6 +147,7 @@ function toEvent(event: any): Event {
   const res = new Event(event._id,
     event.title,
     null,
+    event.place,
     event.not_participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
     event.participants.map(userData => new User(userData._id, userData.username, userData.accessToken)),
     event.uncertains.map(userData => new User(userData._id, userData.username, userData.accessToken)),
@@ -151,8 +155,8 @@ function toEvent(event: any): Event {
     event.date,
     event.event_limit_date,
     event.description)
-    if (event.author) {
-      res.author = new User(event.author._id, event.author.username)
-    }
-    return res
+  if (event.author) {
+    res.author = new User(event.author._id, event.author.username)
+  }
+  return res
 }

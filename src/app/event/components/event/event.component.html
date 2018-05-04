@@ -1,7 +1,20 @@
 <div>
   <div *ngIf="!isLoading; else loading">
-    <h1 class="event_title">{{ event.title }} <span class="event-finished" *ngIf="isFinished()">(terminé)</span></h1>
-    <h2 class="event_date">{{ event.date | date:"fullDate"}} de {{ event.date | date: "shortTime"}}h à {{ event.end_date | date: "shortTime"}}h</h2>
+    <h1 class="event_title">{{ event.title }}
+      <span class="event-finished" *ngIf="isFinished()">(terminé)</span>
+    </h1>
+    <h2> {{ event.date | date:"fullDate"}} à {{ event.date | date: "shortTime"}}h
+      <span *ngIf="event.end_date">jusqu'à
+        <span *ngIf="endSameDay(event); else fullDateTemplate">
+          {{ event.end_date | date: "shortTime"}}
+        </span>
+        <ng-template #fullDateTemplate>
+          {{ event.end_date | date:"fullDate"}} : {{ event.end_date | date: "shortTime"}}
+        </ng-template>
+      </span>
+    </h2>
+    <h2> {{ event.place }}</h2>
+
     <p *ngIf="event.author" class="event_author">Crée par : {{ event.author.username }}</p>
     <p class="event_description">{{event.description}}</p>
     <button mat-raised-button color="warn" *ngIf="isAuthor()" (click)="openDialog()">Supprimer</button>

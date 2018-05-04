@@ -1,14 +1,11 @@
 .menu-wrapper {
     display: flex;
-    flex-direction: column;
     justify-content: flex-start;
-    padding-top: 2em;
+    height: 100%;
 }
 
 .menu-item {
-    cursor: default;
     color: rgb(244, 250, 255);
-    padding-left: 15%;
 }
 
 .menu-item:hover {
@@ -18,4 +15,3 @@
 .menu-item-list {
     margin-top: 1.2em;
 }
-

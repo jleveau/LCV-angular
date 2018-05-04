@@ -11,9 +11,9 @@ export class MenuComponent implements OnInit {
 
   selectedElement: MenuItem
 
-  constructor(private menuService: MenuService  ) {
+  constructor(private menuService: MenuService) {
     this.menuService = menuService;
-   }
+  }
 
   ngOnInit() {
     this.menuService.selectedElementSubject$.subscribe((element) => {

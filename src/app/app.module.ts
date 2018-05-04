@@ -30,10 +30,10 @@ import { MenuService } from './menu/services/menu.service';
 import { TransactionService } from './tricount/services/transaction.service';
 import { TransactionhttpService } from './tricount/services/transactionhttp.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatDialog, MatDialogModule, MatListModule, MatDatepicker, MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatFormFieldControl, MatInputModule, MatTableModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableDataSource } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatDialog, MatDialogModule, MatListModule, MatDatepicker, MatNativeDateModule, MatDatepickerModule, MatFormFieldModule, MatFormFieldControl, MatInputModule, MatTableModule, MatPaginatorModule, MatProgressSpinnerModule, MatTableDataSource, MatMenuModule } from '@angular/material';
 import { FormComponent } from './event/components/form/form.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
-import {MatSortModule} from '@angular/material/sort';
+import { MatSortModule } from '@angular/material/sort';
 import { MainComponent } from './main/main/main.component';
 import { MainRoutingModule } from './main/main/main-routing.module';
 
@@ -80,8 +80,8 @@ registerLocaleData(localeFr, 'fr');
     OwlNativeDateTimeModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    MatSortModule
-    
+    MatSortModule,
+    MatMenuModule
   ],
   entryComponents: [
     TransactionButtonComponent,

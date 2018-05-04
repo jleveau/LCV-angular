@@ -10,7 +10,7 @@
 
     <ng-container matColumnDef="participants">
       <mat-header-cell *matHeaderCellDef> Participants </mat-header-cell>
-      <mat-cell *matCellDef="let event"> {{event.liste_participants.length}} 
+      <mat-cell *matCellDef="let event"> {{event.liste_participants.length}}
         <i *ngIf="participating(event)" style="color:#94d82d" class="fa fa-check" aria-hidden="true"></i>
         <i *ngIf="maybe(event)" style="color: #ffc107" class="fa fa-question" aria-hidden="true"></i>
         <i *ngIf="notParticipating(event)" style="color: #dc3545 " class="fa fa-times" aria-hidden="true"></i>
@@ -19,8 +19,8 @@
     </ng-container>
 
     <ng-container matColumnDef="author">
-        <mat-header-cell *matHeaderCellDef> Auteur </mat-header-cell>
-        <mat-cell *matCellDef="let event"> {{ event.author }} </mat-cell>
+      <mat-header-cell *matHeaderCellDef> Auteur </mat-header-cell>
+      <mat-cell *matCellDef="let event"> {{ event.author }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="start">
@@ -29,12 +29,21 @@
     </ng-container>
 
     <ng-container matColumnDef="end">
-      <mat-header-cell *matHeaderCellDef> Fin  </mat-header-cell>
-      <mat-cell *matCellDef="let event"> {{ event.end_date | date:"fullDate"}} : {{ event.end_date | date: "shortTime"}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef> Fin </mat-header-cell>
+      <mat-cell *matCellDef="let event">
+        <div *ngIf="event.end_date">
+          <div *ngIf="endSameDay(event); else fullDateTemplate">
+            {{ event.end_date | date: "shortTime"}}
+          </div>
+          <ng-template #fullDateTemplate>
+            {{ event.end_date | date:"fullDate"}} : {{ event.end_date | date: "shortTime"}}
+          </ng-template>
+        </div>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToEvent(row)"  [ngClass]="{'event-finished': eventFinished(row)}"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToEvent(row)" [ngClass]="{'event-finished': eventFinished(row)}"></mat-row>
   </mat-table>
   <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
   </mat-paginator>
