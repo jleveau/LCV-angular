@@ -1,51 +1,48 @@
-<div class="event-list-wrapper">
-  <div class="button-group">
-    <button mat-raised-button (click)="redirectCreateEvent()">Créer un évenement</button>
-  </div>
-  <mat-table #table [dataSource]="dataSource">
-    <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef> Titre </mat-header-cell>
-      <mat-cell *matCellDef="let event"> {{event.title}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="participants">
-      <mat-header-cell *matHeaderCellDef> Participants </mat-header-cell>
-      <mat-cell *matCellDef="let event"> {{event.liste_participants.length}}
-        <i *ngIf="participating(event)" style="color:#94d82d" class="fa fa-check" aria-hidden="true"></i>
-        <i *ngIf="maybe(event)" style="color: #ffc107" class="fa fa-question" aria-hidden="true"></i>
-        <i *ngIf="notParticipating(event)" style="color: #dc3545 " class="fa fa-times" aria-hidden="true"></i>
-
-      </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="author">
-      <mat-header-cell *matHeaderCellDef> Auteur </mat-header-cell>
-      <mat-cell *matCellDef="let event"> {{ event.author }} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="start">
-      <mat-header-cell *matHeaderCellDef> Début </mat-header-cell>
-      <mat-cell *matCellDef="let event"> {{ event.date | date:"fullDate"}} : {{ event.date | date: "shortTime"}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="end">
-      <mat-header-cell *matHeaderCellDef> Fin </mat-header-cell>
-      <mat-cell *matCellDef="let event">
-        <div *ngIf="event.end_date">
-          <div *ngIf="endSameDay(event); else fullDateTemplate">
-            {{ event.end_date | date: "shortTime"}}
-          </div>
-          <ng-template #fullDateTemplate>
-            {{ event.end_date | date:"fullDate"}} : {{ event.end_date | date: "shortTime"}}
-          </ng-template>
-        </div>
-      </mat-cell>
-    </ng-container>
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToEvent(row)" [ngClass]="{'event-finished': eventFinished(row)}"></mat-row>
-  </mat-table>
-  <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
-  </mat-paginator>
-
+<div class="button-group">
+  <button mat-raised-button (click)="redirectCreateEvent()">Créer un évenement</button>
 </div>
+<mat-table #table [dataSource]="dataSource">
+  <ng-container matColumnDef="title">
+    <mat-header-cell *matHeaderCellDef> Titre </mat-header-cell>
+    <mat-cell *matCellDef="let event"> {{event.title}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="participants">
+    <mat-header-cell *matHeaderCellDef> Participants </mat-header-cell>
+    <mat-cell *matCellDef="let event"> {{event.liste_participants.length}}
+      <i *ngIf="participating(event)" style="color:#94d82d" class="fa fa-check" aria-hidden="true"></i>
+      <i *ngIf="maybe(event)" style="color: #ffc107" class="fa fa-question" aria-hidden="true"></i>
+      <i *ngIf="notParticipating(event)" style="color: #dc3545 " class="fa fa-times" aria-hidden="true"></i>
+
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="author">
+    <mat-header-cell *matHeaderCellDef> Auteur </mat-header-cell>
+    <mat-cell *matCellDef="let event"> {{ event.author }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="start">
+    <mat-header-cell *matHeaderCellDef> Début </mat-header-cell>
+    <mat-cell *matCellDef="let event"> {{ event.date | date:"fullDate"}} : {{ event.date | date: "shortTime"}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="end">
+    <mat-header-cell *matHeaderCellDef> Fin </mat-header-cell>
+    <mat-cell *matCellDef="let event">
+      <div *ngIf="event.end_date">
+        <div *ngIf="endSameDay(event); else fullDateTemplate">
+          {{ event.end_date | date: "shortTime"}}
+        </div>
+        <ng-template #fullDateTemplate>
+          {{ event.end_date | date:"fullDate"}} : {{ event.end_date | date: "shortTime"}}
+        </ng-template>
+      </div>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToEvent(row)" [ngClass]="{'event-finished': eventFinished(row)}"></mat-row>
+</mat-table>
+<mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" [showFirstLastButtons]="true">
+</mat-paginator>

@@ -32,24 +32,24 @@
 .registration-wrapper {
     display: grid;
     height: 100vh;
-    grid-template-columns: 25% 50% 25%;
     grid-template-areas:
       'placeholder_l main placeholder_r';
+    grid-template-columns: minmax(0, 25%) minmax(150px, 50%) minmax(0, 25%);
     background-color: #2b303a;
 }
 
 .lcv-form-group {
-    width: 50%;
     text-align: center;
 }
 
 .lcv-form-item {
     margin-bottom: 1em;
-    align-self: center
+    align-self: center;
 }
 
 .registration-button {
     background-color: #1db954;
+    width: 100%;
 }
 
 .panel-selector:hover {
