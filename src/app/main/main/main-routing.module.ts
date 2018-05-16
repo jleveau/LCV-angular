@@ -1,5 +1,5 @@
 
-import { NgModule }             from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
 import { EventComponent } from '../../event/components/event/event.component';
@@ -11,20 +11,22 @@ import { AuthenticationService } from '../../authentication/services/authenticat
 
 const routes: Routes = [
   {
-    path: '', 
+    path: '',
     component: MainComponent,
     canActivate: [AuthenticationService],
     children: [
-    { path: '', redirectTo: "event-list", pathMatch: 'full'},
-    { path: 'event/:id', component: EventComponent },
-    { path: 'event-create', component: FormComponent },
-    { path: 'event-list', component: EventListComponent },
-    { path: 'tricount', component: TransactionViewComponent }
-  ]}
+      { path: '', redirectTo: "event-list", pathMatch: 'full' },
+      { path: 'event/:id', component: EventComponent },
+      { path: 'event-edit/:id', component: FormComponent },
+      { path: 'event-create', component: FormComponent },
+      { path: 'event-list', component: EventListComponent },
+      { path: 'tricount', component: TransactionViewComponent }
+    ]
+  }
 ]
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ],
-  exports: [ RouterModule]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class MainRoutingModule {}
+export class MainRoutingModule { }

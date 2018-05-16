@@ -63,7 +63,7 @@ export class EventHttpService {
     });
   }
 
-  updateEvent(event: Event): Promise<Event> {
+  updateEvent(event: Event, notify: boolean = false): Promise<Event> {
     return new Promise<Event>((resolve, reject) => {
       this.http.put<any>(this.event_url + "/", {
         event:
@@ -76,8 +76,10 @@ export class EventHttpService {
             participants: event.liste_participants.map(user => user.id),
             not_participants: event.liste_absents.map(user => user.id),
             uncertains: event.liste_incertains.map(user => user.id)
-          }
-      }).subscribe((response) => {
+          },
+        notify: notify
+      }
+      ).subscribe((response) => {
         if (response.error) {
           reject(response.error);
         } else {
@@ -89,7 +91,7 @@ export class EventHttpService {
     });
   }
 
-  createEvent(event: Event): Promise<Event> {
+  createEvent(event: Event, notify: boolean = false): Promise<Event> {
     return new Promise<Event>((resolve, reject) => {
       const data = {
         title: event.title,
@@ -106,7 +108,8 @@ export class EventHttpService {
         data.author = event.author.id
       }
       this.http.post<any>(this.event_url + "/", {
-        event: data
+        event: data,
+        notify: notify
       }).subscribe((response) => {
         if (response.error) {
           reject(response.error);

@@ -38,11 +38,11 @@
         <owl-date-time #dateend></owl-date-time>
       </mat-form-field>
 
-      <button class="submit-button" type="submit" [disabled]="!eventForm.form.valid" mat-raised-button color="primary">Créer</button>
+      <button *ngIf="!isEdit" class="submit-button" type="submit" [disabled]="!eventForm.form.valid" mat-raised-button color="primary">Créer</button>
+      <button *ngIf="isEdit" class="submit-button" type="submit" [disabled]="!eventForm.form.valid" mat-raised-button color="primary">Editer</button>
+
     </div>
   </form>
-
-
 </div>
 
 <ng-template class="loading" #loading>

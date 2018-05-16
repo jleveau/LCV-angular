@@ -17,6 +17,7 @@
 
     <p *ngIf="event.author" class="event_author">Crée par : {{ event.author.username }}</p>
     <p class="event_description">{{event.description}}</p>
+    <button mat-raised-button color="primary" *ngIf="isAuthor()" (click)="goToEdit()">Editer</button>
     <button mat-raised-button color="warn" *ngIf="isAuthor()" (click)="openDialog()">Supprimer</button>
     <div class="event-content">
       <app-list-users [participating_list]="event.liste_participants" [not_participating_list]="event.liste_absents" [maybe_list]="event.liste_incertains"></app-list-users>

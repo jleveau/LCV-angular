@@ -47,8 +47,11 @@ export class EventComponent implements OnInit {
       return false
     } else {
       return this.userService.getCurrentUser().id == this.event.author.id
-
     }
+  }
+
+  goToEdit(): void {
+    this.router.navigate(['event-edit', this.event.id])
   }
 
   openDialog(): void {

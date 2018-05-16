@@ -66,6 +66,10 @@ textarea.mat-input-element {
     font-size: inherit; 
 }
 
+.mat-input-element {
+    caret-color: inherit;
+}
+
 .mat-header-cell {
     color:  #f4faff;
     font-size: 1em;

@@ -99,7 +99,7 @@ export class ListUsersComponent implements OnInit {
     event.liste_participants = this.participating_list
     event.liste_absents = this.not_participating_list
     event.liste_incertains = this.maybe_list
-    this.eventService.update()
+    this.eventService.update(event)
   }
 
   deleteUserFromList(name: string, list): void {
