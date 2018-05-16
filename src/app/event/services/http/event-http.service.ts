@@ -69,6 +69,7 @@ export class EventHttpService {
         event:
           {
             _id: event.id,
+            title: event.title,
             description: event.description,
             place: event.place,
             date: event.date,
